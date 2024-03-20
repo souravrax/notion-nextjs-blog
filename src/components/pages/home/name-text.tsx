@@ -20,6 +20,7 @@ export default function NameText() {
                     transition={{
                         ease: "easeOut",
                         duration: 0.3,
+                        delay: 1,
                     }}
                     className="text-primary"
                 >
@@ -34,6 +35,7 @@ export default function NameText() {
                     transition={{
                         ease: "easeOut",
                         duration: 0.5,
+                        delay: 1,
                     }}
                     className="text-secondary-foreground"
                 >
@@ -45,25 +47,25 @@ export default function NameText() {
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "75%" }}
-                    transition={{ delay: 0.5, duration: 1 }}
+                    transition={{ duration: 1 }}
                     className="absolute inset-x-20 top-0 left-1/2 -translate-x-1/2 right-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm"
                 />
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "75%" }}
-                    transition={{ delay: 0.5, duration: 1 }}
+                    transition={{ duration: 1 }}
                     className="absolute inset-x-20 top-0 left-1/2 -translate-x-1/2 right-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4"
                 />
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "25%" }}
-                    transition={{ delay: 0.8, duration: 1 }}
+                    transition={{ duration: 1 }}
                     className="absolute inset-x-60 top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm"
                 />
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "25%" }}
-                    transition={{ delay: 0.8, duration: 1 }}
+                    transition={{ duration: 1 }}
                     className="absolute inset-x-60 top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4"
                 />
 
