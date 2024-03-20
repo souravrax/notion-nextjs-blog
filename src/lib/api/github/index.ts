@@ -3,7 +3,8 @@ import { GithubProjectType } from "./type";
 export async function getGithubRepos() {
     try {
         const response = await fetch(
-            "https://api.github.com/users/souravrax/repos"
+            "https://api.github.com/users/souravrax/repos",
+            { cache: "force-cache" }
         );
         if (!response.ok) {
             throw Error(

@@ -4,7 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/header/header";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/lib/providers/theme-provider";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import Footer from "@/components/layout/footer/footer";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Poppins({
     subsets: ["latin"],
@@ -21,11 +22,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
             <body className={cn(inter.className)}>
                 <ThemeProvider>
-                    <Header />
-                    <main className="container">{children}</main>
+                    <TooltipProvider>
+                        <Header />
+                        <main className="container">{children}</main>
+                        <Footer />
+                    </TooltipProvider>
                 </ThemeProvider>
             </body>
         </html>
