@@ -1,3 +1,4 @@
+import DownloadResumeButton from "@/components/atoms/download-resume-button";
 import Achievements from "@/components/pages/codesmith/achievement";
 import Education from "@/components/pages/codesmith/education";
 import Experience from "@/components/pages/codesmith/experience";
@@ -7,6 +8,13 @@ import Skills from "@/components/pages/codesmith/skills";
 import NameText from "@/components/pages/home/name-text";
 import { Badge } from "@/components/ui/badge";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import {
+    ArrowDown01Icon,
+    ArrowDownIcon,
+    ArrowDownToLine,
+    DownloadIcon,
+    HardDriveDownloadIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 const sections = [
@@ -24,6 +32,11 @@ export default function page() {
                 Transforming your ideas into seamless digital experiences -
                 let&apos;s collaborate! I&apos;m
             </Kicker>
+            <p className="sr-only">
+                Transforming your ideas into seamless digital experiences -
+                let&apos;s collaborate! I&apos;m
+            </p>
+            <h1 className="sr-only">Sourav Rakshit</h1>
             <NameText />
             <TypewriterEffect
                 className="text-md md:text-md lg:text-xl"
@@ -32,6 +45,7 @@ export default function page() {
                     .split(" ")
                     .map((word) => ({ text: word }))}
             />
+            <DownloadResumeButton />
             <div className="w-full flex-wrap flex justify-center items-center gap-2">
                 {sections.map((section) => (
                     <Link key={`${section}-tag-redirect`} href={`#${section}`}>
