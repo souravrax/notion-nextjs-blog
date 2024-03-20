@@ -1,9 +1,16 @@
-import { TypographyH4 } from "@/components/ui/typography";
+import {
+    TypographyH2,
+    TypographyH3,
+    TypographyH4,
+} from "@/components/ui/typography";
 import { Berkshire_Swash } from "next/font/google";
 import Link from "next/link";
 import ThemeSwitcher from "./theme-switcher";
 import {
     BookmarkIcon,
+    Cross1Icon,
+    Cross2Icon,
+    CrossCircledIcon,
     HamburgerMenuIcon,
     ReaderIcon,
 } from "@radix-ui/react-icons";
@@ -27,7 +34,7 @@ const barkshire_swash_font = Berkshire_Swash({
 
 export default function Header() {
     return (
-        <nav className="container py-3">
+        <nav className="container py-3 sticky top-0 left-0 right-0 z-40">
             <div className="border w-full py-3 px-5 justify-between flex items-center backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-xl">
                 <div className="flex justify-center items-center gap-4">
                     <Link href="/">
@@ -75,41 +82,46 @@ function MobileMenu() {
                     <HamburgerMenuIcon />
                 </Button>
             </SheetTrigger>
-            <SheetContent>
-                <SheetHeader>
-                    <SheetTitle>Edit profile</SheetTitle>
-                    <SheetDescription>
-                        Make changes to your profile here. Click save when you
-                        {"'"}re done.
-                    </SheetDescription>
-                </SheetHeader>
-                <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                            Name
-                        </Label>
-                        <Input
-                            id="name"
-                            value="Pedro Duarte"
-                            className="col-span-3"
-                        />
-                    </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="username" className="text-right">
-                            Username
-                        </Label>
-                        <Input
-                            id="username"
-                            value="@peduarte"
-                            className="col-span-3"
-                        />
-                    </div>
-                </div>
-                <SheetFooter>
-                    <SheetClose asChild>
-                        <Button type="submit">Save changes</Button>
+            <SheetContent className="w-full flex flex-col justify-center items-center">
+                <div className="w-full flex flex-col gap-8">
+                    <SheetClose>
+                        <Link href="/lensmith" className="hover:underline">
+                            <TypographyH2 className="flex items-center justify-center gap-2">
+                                Lensmith
+                            </TypographyH2>
+                        </Link>
                     </SheetClose>
-                </SheetFooter>
+                    <Link href="/codesmith" className="hover:underline">
+                        <TypographyH2 className="flex items-center justify-center gap-2">
+                            Codesmith
+                        </TypographyH2>
+                    </Link>
+                    <Link
+                        href="/resources"
+                        className="hover:underline md:hidden"
+                    >
+                        <TypographyH2 className="flex items-center justify-center gap-2">
+                            Resources
+                        </TypographyH2>
+                    </Link>
+                    <Link href="/blogs" className="hover:underline md:hidden">
+                        <TypographyH2 className="flex items-center justify-center gap-2">
+                            Blogs
+                        </TypographyH2>
+                    </Link>
+                    <ThemeSwitcher />
+                </div>
+                <SheetClose
+                    asChild
+                    className="flex justify-center items-center m-10"
+                >
+                    <Button
+                        className="border-destructive rounded-full py-8 px-10 border-4"
+                        variant="outline"
+                    >
+                        <Cross2Icon className="h-10 w-10" />
+                    </Button>
+                </SheetClose>
             </SheetContent>
         </Sheet>
     );

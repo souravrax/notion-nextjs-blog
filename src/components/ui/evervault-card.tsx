@@ -46,10 +46,10 @@ export const EvervaultCard = ({
                     mouseY={mouseY}
                     randomString={randomString}
                 />
-                <div className="relative z-10 flex items-center justify-center">
+                <div className="relative flex items-center justify-center">
                     <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-foreground font-bold text-4xl">
-                        <div className="absolute w-full h-full bg-secondary/[0.8] blur-sm rounded-full" />
-                        <span className="text-foreground z-20">{text}</span>
+                        <div className="absolute w-full h-full bg-secondary/[0.8] blur-sm rounded-full"></div>
+                        <div className="text-foreground z-10">{text}</div>
                     </div>
                 </div>
             </div>
