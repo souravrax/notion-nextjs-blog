@@ -23,9 +23,6 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={cn(inter.className)}>
-                {process.env.NODE_ENV === "development" ? null : (
-                    <BackgroundBeams />
-                )}
                 <ThemeProvider>
                     <Header />
                     <main className="container">{children}</main>
