@@ -1,8 +1,16 @@
 import { TitleDescriptionCard } from "@/components/atoms/title-description-container";
-import React from "react";
+import { getGithubRepos } from "@/lib/api/github";
+import { HoverGrid } from "./github-hover-card";
+
+async function GithubProjects() {
+    const projects = await getGithubRepos();
+    return <HoverGrid items={projects} />;
+}
 
 export default function Projects() {
     return (
-        <TitleDescriptionCard title="Projects">Projects</TitleDescriptionCard>
+        <TitleDescriptionCard title="Projects">
+            <GithubProjects />
+        </TitleDescriptionCard>
     );
 }
