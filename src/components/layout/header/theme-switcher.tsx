@@ -1,21 +1,6 @@
 "use client";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import {
-    Command,
-    CommandInput,
-    CommandEmpty,
-    CommandGroup,
-    CommandItem,
-} from "@/components/ui/command";
 import { useTheme } from "next-themes";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { BlendingModeIcon, CheckIcon } from "@radix-ui/react-icons";
+import { BlendingModeIcon } from "@radix-ui/react-icons";
 import {
     Select,
     SelectGroup,
@@ -42,7 +27,7 @@ export default function ThemeSwitcher() {
             onValueChange={(value) => {
                 setTheme(value);
             }}
-            value={theme}
+            value={theme ?? "black"}
         >
             <SelectTrigger className="gap-2 flex justify-center items-center">
                 <BlendingModeIcon />
