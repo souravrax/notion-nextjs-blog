@@ -1,16 +1,10 @@
-import {
-    TypographyH2,
-    TypographyH3,
-    TypographyH4,
-} from "@/components/ui/typography";
-import { Berkshire_Swash } from "next/font/google";
+import { TypographyH2, TypographyH4 } from "@/components/ui/typography";
+import { Pacifico } from "next/font/google";
 import Link from "next/link";
 import ThemeSwitcher from "./theme-switcher";
 import {
     BookmarkIcon,
-    Cross1Icon,
     Cross2Icon,
-    CrossCircledIcon,
     HamburgerMenuIcon,
     ReaderIcon,
 } from "@radix-ui/react-icons";
@@ -18,30 +12,31 @@ import {
     Sheet,
     SheetTrigger,
     SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetDescription,
-    SheetFooter,
     SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-const barkshire_swash_font = Berkshire_Swash({
+import { cn } from "@/lib/utils";
+const barkshire_swash_font = Pacifico({
     weight: "400",
     subsets: ["latin"],
 });
 
 export default function Header() {
     return (
-        <nav className="container py-3 sticky top-0 left-0 right-0 z-40">
-            <div className="border w-full py-3 px-5 justify-between flex items-center backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-xl">
+        <nav className="container py-3 top-0 left-0 right-0 z-40">
+            <div className="w-full py-3 px-5 justify-between flex items-center backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-xl">
                 <div className="flex justify-center items-center gap-4">
                     <Link href="/">
                         <TypographyH4
-                            className={barkshire_swash_font.className}
+                            className={cn(
+                                barkshire_swash_font.className,
+                                "font-light"
+                            )}
                         >
-                            Sourav Rakshit
+                            <span className="text-primary">S</span>
+                            <span className="text-foreground">ourav</span>
+                            <span className="text-primary"> R</span>
+                            <span className="text-foreground">akshit</span>
                         </TypographyH4>
                     </Link>
                 </div>

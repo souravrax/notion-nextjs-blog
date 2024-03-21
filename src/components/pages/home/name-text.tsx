@@ -76,7 +76,7 @@ export default function NameText() {
                     maxSize={1}
                     particleDensity={250}
                     className="w-full h-full"
-                    particleColor="#818181"
+                    particleColor="#ffffff"
                 />
 
                 {/* Radial Gradient to prevent sharp edges */}

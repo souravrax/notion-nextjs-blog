@@ -60,7 +60,7 @@
         --border: 0 0% 11%;
         --input: 0 0% 16%;
         --ring: 24 94% 40%;
-        --radius: 0.5rem;
+        --radius: 2rem;
     }
 
     .dark {
@@ -83,7 +83,7 @@
         --destructive: 2 87% 49%;
         --destructive-foreground: 0 0% 100%;
         --ring: 64 83% 80%;
-        --radius: 0.5rem;
+        --radius: 2rem;
     }
 }
 
