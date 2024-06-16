@@ -1,123 +1,136 @@
-import { TypographyH2, TypographyH4 } from "@/components/ui/typography";
-import { Pacifico } from "next/font/google";
-import Link from "next/link";
-import ThemeSwitcher from "./theme-switcher";
-import {
-    BookmarkIcon,
-    Cross2Icon,
-    HamburgerMenuIcon,
-    ReaderIcon,
-} from "@radix-ui/react-icons";
-import {
-    Sheet,
-    SheetTrigger,
-    SheetContent,
-    SheetClose,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+"use client";
 import { cn } from "@/lib/utils";
-const barkshire_swash_font = Pacifico({
-    weight: "400",
+import { Gloock, Open_Sans, Source_Sans_3 } from "next/font/google";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { navItems } from "@/config/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const gloock_font = Gloock({
     subsets: ["latin"],
+    weight: "400",
 });
 
-export default function Header() {
+const playfair_display = Source_Sans_3({
+    subsets: ["latin"],
+    weight: ["400"],
+});
+
+export function Logo() {
     return (
-        <nav className="container py-3 top-0 left-0 right-0 z-40">
-            <div className="w-full py-3 px-5 justify-between flex items-center backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-xl">
-                <div className="flex justify-center items-center gap-4">
-                    <Link href="/">
-                        <TypographyH4
-                            className={cn(
-                                barkshire_swash_font.className,
-                                "font-light"
-                            )}
-                        >
-                            <span className="text-primary">S</span>
-                            <span className="text-foreground">ourav</span>
-                            <span className="text-primary"> R</span>
-                            <span className="text-foreground">akshit</span>
-                        </TypographyH4>
-                    </Link>
-                </div>
-                <div className="flex justify-center items-center gap-4">
-                    <div className="justify-center items-center gap-4 hidden md:flex">
-                        <ThemeSwitcher />
-                        <Link href="/resources" className="hover:underline">
-                            <Button
-                                className="flex items-center justify-center gap-2"
-                                variant="outline"
-                            >
-                                <BookmarkIcon />
-                                Resources
-                            </Button>
-                        </Link>
-                        <Link href="/blogs" className="hover:underline">
-                            <Button
-                                className="flex items-center justify-center gap-2"
-                                variant="outline"
-                            >
-                                <ReaderIcon />
-                                Blogs
-                            </Button>
-                        </Link>
-                    </div>
-                    <MobileMenu />
-                </div>
-            </div>
-        </nav>
+        <motion.h1
+            className={cn(
+                gloock_font.className,
+                "font-bold uppercase text-center text-primary mix-blend-multiply text-sm"
+            )}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{
+                ease: "easeInOut",
+                delay: 0.5,
+                duration: 0.7,
+            }}
+        >
+            Sourav Rakshit
+        </motion.h1>
     );
 }
 
-function MobileMenu() {
+function NavBar() {
+    const location = usePathname();
+    const [hoveredUrl, setHoveredUrl] = useState<string>(location);
+    useEffect(() => {
+        setHoveredUrl(location);
+    }, [location]);
     return (
-        <Sheet>
-            <SheetTrigger asChild>
-                <Button variant="outline">
-                    <HamburgerMenuIcon />
-                </Button>
-            </SheetTrigger>
-            <SheetContent className="w-full flex flex-col justify-center items-center">
-                <div className="w-full flex flex-col gap-8">
-                    <SheetClose>
-                        <Link href="/lensmith" className="hover:underline">
-                            <TypographyH2 className="flex items-center justify-center gap-2">
-                                Lensmith
-                            </TypographyH2>
+        <motion.nav>
+            <motion.ul
+                id="nav-menu"
+                className="flex flex-row gap-5 justify-center items-center"
+                layout
+            >
+                {navItems.map((item, idx) => (
+                    <motion.li
+                        key={item.name}
+                        initial={{
+                            opacity: 0,
+                            y: -10,
+                        }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{
+                            ease: "easeInOut",
+                            delay: 0.5 + 0.2 * idx,
+                            duration: 0.2,
+                        }}
+                        className="relative items-center justify-center flex"
+                        onMouseEnter={() => setHoveredUrl(item.url)}
+                        onMouseLeave={() => setHoveredUrl(location)}
+                    >
+                        <Link
+                            className={cn(
+                                "uppercase px-4 py-2 text-xs font-light",
+                                location.startsWith(item.url)
+                                    ? "text-background"
+                                    : "text-foreground",
+                                playfair_display.className
+                            )}
+                            href={item.url}
+                        >
+                            {item.name}
                         </Link>
-                    </SheetClose>
-                    <Link href="/codesmith" className="hover:underline">
-                        <TypographyH2 className="flex items-center justify-center gap-2">
-                            Codesmith
-                        </TypographyH2>
-                    </Link>
-                    <Link
-                        href="/resources"
-                        className="hover:underline md:hidden"
-                    >
-                        <TypographyH2 className="flex items-center justify-center gap-2">
-                            Resources
-                        </TypographyH2>
-                    </Link>
-                    <Link href="/blogs" className="hover:underline md:hidden">
-                        <TypographyH2 className="flex items-center justify-center gap-2">
-                            Blogs
-                        </TypographyH2>
-                    </Link>
-                    <ThemeSwitcher />
-                </div>
-                <SheetClose
-                    asChild
-                    className="flex justify-center items-center m-10"
-                >
-                    <Button
-                        className="border-destructive rounded-full py-8 px-10 border-4"
-                        variant="outline"
-                    >
-                        <Cross2Icon className="h-10 w-10" />
-                    </Button>
-                </SheetClose>
-            </SheetContent>
-        </Sheet>
+                        {hoveredUrl == item.url ? (
+                            <motion.div
+                                layoutId="linkHover"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="absolute top-0 left-0 bottom-0 right-0 -z-10 bg-foreground/30"
+                            />
+                        ) : null}
+                        {location.startsWith(item.url) ? (
+                            <motion.div
+                                layoutId="activePage"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="absolute top-0 left-0 bottom-0 right-0 -z-10 bg-foreground"
+                            />
+                        ) : null}
+                    </motion.li>
+                ))}
+            </motion.ul>
+        </motion.nav>
+    );
+}
+
+export default function Header() {
+    const location = usePathname();
+    return (
+        <motion.header
+            className={cn(
+                "sticky",
+                location == "/" ? "bg-white" : "backdrop-blur-lg"
+            )}
+            initial={{ opacity: 0 }}
+            animate={{
+                opacity: 1,
+            }}
+            transition={{ ease: "easeInOut", duration: 2 }}
+        >
+            <div
+                className={cn(
+                    "flex flex-col-reverse gap-2 py-2 md:py-0 md:flex-row justify-between items-center px-8"
+                )}
+            >
+                <NavBar />
+                <AnimatePresence>
+                    {location !== "/" && (
+                        <Link className={cn()} href={"/"}>
+                            <Logo />
+                        </Link>
+                    )}
+                </AnimatePresence>
+            </div>
+        </motion.header>
     );
 }

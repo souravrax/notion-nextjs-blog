@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Poppins, Zilla_Slab } from "next/font/google";
+import { Zilla_Slab } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/header/header";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/lib/providers/theme-provider";
 import Footer from "@/components/layout/footer/footer";
@@ -10,7 +9,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
-import HeroHeader from "@/components/pages/home/header";
+import Header from "@/components/layout/header/header";
+import FrozenRouter from "@/lib/providers/frozen-router";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 
@@ -37,9 +37,8 @@ export default function RootLayout({
             <body className={cn(gf_zilla_slab.className)}>
                 <ThemeProvider>
                     <TooltipProvider>
-                        {/* <Header /> */}
-                        <HeroHeader />
-                        <main className="container">{children}</main>
+                        <Header />
+                        {children}
                         <Footer />
                     </TooltipProvider>
                 </ThemeProvider>
