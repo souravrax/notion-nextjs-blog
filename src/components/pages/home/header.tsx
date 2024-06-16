@@ -22,10 +22,10 @@ export default function HeroHeader() {
         <AnimatePresence>
             <motion.header
                 className={cn(
-                    "flex justify-center items-center rounded-bl-5xl rounded-br-5xl select-none",
+                    "relative flex justify-center items-center rounded-bl-5xl rounded-br-5xl select-none",
                     isNotHome
                         ? "flex-col py-3 px-24 sticky left-0 right-0 top-0 z-50 justify-between rounded-none backdrop-blur-xl bg-secondary/30 gap-2"
-                        : "flex-col gap-8 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-24 lg:py-48"
+                        : "flex-col gap-10 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-24 lg:py-48"
                 )}
                 initial={{ y: -200, opacity: 0 }}
                 animate={{
@@ -34,6 +34,7 @@ export default function HeroHeader() {
                 }}
                 transition={{ ease: "easeInOut", duration: 0.5 }}
             >
+                {!isNotHome && <motion.p>Hey, I&apos;m</motion.p>}
                 <motion.div className="space-y-5" layout>
                     <Link href={"/"}>
                         <motion.h1
@@ -55,7 +56,7 @@ export default function HeroHeader() {
                     </Link>
                     {!isNotHome ? (
                         <motion.p
-                            className="font-medium text-center text-sm md:text-[10px] lg:text-[20px] max-w-screen-sm md:max-w-screen-md px-5 text-secondary"
+                            className="font-medium text-center text-sm md:text-[10px] lg:text-[20px] max-w-screen-sm md:max-w-screen-md px-5 text-background"
                             initial={{
                                 y: 100,
                                 opacity: 0,
@@ -96,7 +97,7 @@ export default function HeroHeader() {
                         >
                             <Link
                                 className={cn(
-                                    "px-4 py-2",
+                                    "lowercase px-4 py-2",
                                     location.match(item.url)
                                         ? "text-background"
                                         : "underline text-link",
