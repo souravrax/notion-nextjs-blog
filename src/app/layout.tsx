@@ -9,7 +9,7 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/header/header";
-import { gf_zilla_slab } from "@/assets/fonts";
+import { secondary_font } from "@/assets/fonts";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 
@@ -28,7 +28,7 @@ export default function RootLayout({
             <GoogleAnalytics gaId={gaId} />
             <VercelAnalytics />
             <VercelSpeedInsights />
-            <body className={cn(gf_zilla_slab.className)}>
+            <body className={cn(secondary_font.className)}>
                 <ThemeProvider>
                     <TooltipProvider>
                         <Header />

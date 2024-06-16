@@ -4,13 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavigationMenu } from "./nav-bar";
-import { gloock_font } from "@/assets/fonts";
+import { primary_font } from "@/assets/fonts";
 
 export function Logo() {
     return (
         <motion.h1
             className={cn(
-                gloock_font.className,
+                primary_font.className,
                 "font-bold uppercase text-center text-primary mix-blend-multiply text-sm"
             )}
             initial={{ opacity: 0, y: -10 }}

@@ -1,4 +1,4 @@
-import { playfair_display } from "@/assets/fonts";
+import { tertiary_font } from "@/assets/fonts";
 import { navItems } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -43,7 +43,7 @@ export function NavigationMenu() {
                                 location.startsWith(item.url)
                                     ? "text-background"
                                     : "text-foreground",
-                                playfair_display.className
+                                tertiary_font.className
                             )}
                             href={item.url}
                         >

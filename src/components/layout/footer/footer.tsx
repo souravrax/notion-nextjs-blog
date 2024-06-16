@@ -46,8 +46,7 @@ const links = [
 export default function Footer() {
     return (
         <>
-            <section className="bg-secondary bg-gradient-to-b from-background to-secondary/[0.5] h-[100px]"></section>
-            <section className="bg-secondary bg-gradient-to-b from-secondary/[0.5] to-secondary py-10 flex flex-col justify-center items-center gap-5">
+            <section className="py-10 flex flex-col justify-center items-center gap-5">
                 <div
                     id="social_links"
                     className="flex items-center justify-center gap-4"
