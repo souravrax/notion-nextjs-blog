@@ -13,6 +13,31 @@ const gloock_font = Gloock({
     weight: "400",
 });
 
+function MotionHeader({ isNotHome }: { isNotHome: boolean }) {
+    return (
+        <motion.h1
+            className={cn(
+                gloock_font.className,
+                "font-bold uppercase text-center text-primary mix-blend-multiply",
+                isNotHome ? "lg:text-3xl" : "lg:text-10xl",
+                isNotHome ? "md:text-md" : "md:text-7xl",
+                isNotHome ? "text-sm" : "text-5xl"
+            )}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                ease: "easeInOut",
+                delay: 0.5,
+                duration: 0.7,
+            }}
+        >
+            Sourav
+            {!isNotHome ? <br /> : " "}
+            Rakshit
+        </motion.h1>
+    );
+}
+
 export default function HeroHeader() {
     const location = usePathname();
     const { scrollYProgress } = useScroll();
@@ -24,10 +49,10 @@ export default function HeroHeader() {
         <AnimatePresence>
             <motion.header
                 className={cn(
-                    "relative flex justify-center items-center select-none overflow-hidden backdrop-grayscale rounded-bl-5xl rounded-br-5xl",
+                    "flex justify-center items-center select-none overflow-hidden backdrop-grayscale rounded-bl-5xl rounded-br-5xl",
                     isNotHome
                         ? "flex-col py-2 px-24 sticky left-0 right-0 top-0 z-50 justify-between rounded-none backdrop-blur-xl bg-secondary/30 gap-2"
-                        : "flex-col gap-11 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-10 lg:py-36"
+                        : "flex-col gap-11 relative bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm h-[85vh]"
                 )}
                 initial={{ opacity: 0 }}
                 animate={{
@@ -37,28 +62,10 @@ export default function HeroHeader() {
             >
                 {!isNotHome && <motion.p>Hey, I&apos;m</motion.p>}
                 <motion.div className="space-y-5" layout>
-                    <Link href={"/"}>
-                        <motion.h1
-                            className={cn(
-                                gloock_font.className,
-                                "font-bold uppercase text-center text-primary mix-blend-multiply",
-                                isNotHome ? "lg:text-3xl" : "lg:text-10xl",
-                                isNotHome ? "md:text-md" : "md:text-7xl",
-                                isNotHome ? "text-sm" : "text-5xl"
-                            )}
-                            initial={{ opacity: 0, scale: 0.7 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                                ease: "easeInOut",
-                                delay: 0.5,
-                                duration: 0.5,
-                            }}
-                        >
-                            Sourav
-                            {!isNotHome ? <br /> : " "}
-                            Rakshit
-                        </motion.h1>
+                    <Link href={isNotHome ? "/" : ""}>
+                        <MotionHeader isNotHome={isNotHome} />
                     </Link>
+
                     {!isNotHome ? (
                         <motion.p
                             className="font-medium text-center text-sm md:text-[10px] lg:text-[20px] max-w-screen-sm md:max-w-screen-md px-5 text-background"
