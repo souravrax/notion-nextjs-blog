@@ -2,10 +2,11 @@
 import { cn } from "@/lib/utils";
 import { Gloock } from "next/font/google";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { navItems } from "@/config/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const gloock_font = Gloock({
     subsets: ["latin"],
@@ -14,6 +15,7 @@ const gloock_font = Gloock({
 
 export default function HeroHeader() {
     const location = usePathname();
+    const { scrollYProgress } = useScroll();
     const [isNotHome, setIsNotHome] = useState(location != "/");
     useEffect(() => {
         setIsNotHome(location !== "/");
@@ -22,17 +24,16 @@ export default function HeroHeader() {
         <AnimatePresence>
             <motion.header
                 className={cn(
-                    "relative flex justify-center items-center rounded-bl-5xl rounded-br-5xl select-none",
+                    "relative flex justify-center items-center select-none overflow-hidden backdrop-grayscale rounded-bl-5xl rounded-br-5xl",
                     isNotHome
-                        ? "flex-col py-3 px-24 sticky left-0 right-0 top-0 z-50 justify-between rounded-none backdrop-blur-xl bg-secondary/30 gap-2"
-                        : "flex-col gap-10 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-24 lg:py-48"
+                        ? "flex-col py-2 px-24 sticky left-0 right-0 top-0 z-50 justify-between rounded-none backdrop-blur-xl bg-secondary/30 gap-2"
+                        : "flex-col gap-11 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-10 lg:py-36"
                 )}
-                initial={{ y: -200, opacity: 0 }}
+                initial={{ opacity: 0 }}
                 animate={{
-                    y: 0,
                     opacity: 1,
                 }}
-                transition={{ ease: "easeInOut", duration: 0.5 }}
+                transition={{ ease: "easeInOut", duration: 2 }}
             >
                 {!isNotHome && <motion.p>Hey, I&apos;m</motion.p>}
                 <motion.div className="space-y-5" layout>
@@ -40,14 +41,18 @@ export default function HeroHeader() {
                         <motion.h1
                             className={cn(
                                 gloock_font.className,
-                                "font-bold uppercase text-center text-primary",
-                                isNotHome ? "lg:text-3xl" : "lg:text-9xl",
+                                "font-bold uppercase text-center text-primary mix-blend-multiply",
+                                isNotHome ? "lg:text-3xl" : "lg:text-10xl",
                                 isNotHome ? "md:text-md" : "md:text-7xl",
                                 isNotHome ? "text-sm" : "text-5xl"
                             )}
-                            initial={{ opacity: 0, scale: 0.5 }}
+                            initial={{ opacity: 0, scale: 0.7 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.5 }}
+                            transition={{
+                                ease: "easeInOut",
+                                delay: 0.5,
+                                duration: 0.5,
+                            }}
                         >
                             Sourav
                             {!isNotHome ? <br /> : " "}
@@ -67,6 +72,7 @@ export default function HeroHeader() {
                             }}
                             transition={{
                                 delay: 0.6,
+                                ease: "easeInOut",
                             }}
                         >
                             Embark on the digital journey of Sourav Rakshit. An
