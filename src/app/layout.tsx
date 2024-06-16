@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Zilla_Slab } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/lib/providers/theme-provider";
@@ -10,14 +9,9 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/header/header";
-import FrozenRouter from "@/lib/providers/frozen-router";
+import { gf_zilla_slab } from "@/assets/fonts";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
-
-const gf_zilla_slab = Zilla_Slab({
-    subsets: ["latin"],
-    weight: "500",
-});
 
 export const metadata: Metadata = {
     title: "Sourav Rakshit",

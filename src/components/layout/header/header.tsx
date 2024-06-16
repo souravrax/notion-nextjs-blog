@@ -1,21 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Gloock, Open_Sans, Source_Sans_3 } from "next/font/google";
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { navItems } from "@/config/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const gloock_font = Gloock({
-    subsets: ["latin"],
-    weight: "400",
-});
-
-const playfair_display = Source_Sans_3({
-    subsets: ["latin"],
-    weight: ["400"],
-});
+import { NavigationMenu } from "./nav-bar";
+import { gloock_font } from "@/assets/fonts";
 
 export function Logo() {
     return (
@@ -38,71 +27,6 @@ export function Logo() {
     );
 }
 
-function NavBar() {
-    const location = usePathname();
-    const [hoveredUrl, setHoveredUrl] = useState<string>(location);
-    useEffect(() => {
-        setHoveredUrl(location);
-    }, [location]);
-    return (
-        <motion.nav>
-            <motion.ul
-                id="nav-menu"
-                className="flex flex-row gap-5 justify-center items-center"
-                layout
-            >
-                {navItems.map((item, idx) => (
-                    <motion.li
-                        key={item.name}
-                        initial={{
-                            opacity: 0,
-                            y: -10,
-                        }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{
-                            ease: "easeInOut",
-                            delay: 0.5 + 0.2 * idx,
-                            duration: 0.2,
-                        }}
-                        className="relative items-center justify-center flex"
-                        onMouseEnter={() => setHoveredUrl(item.url)}
-                        onMouseLeave={() => setHoveredUrl(location)}
-                    >
-                        <Link
-                            className={cn(
-                                "uppercase px-4 py-2 text-xs font-light",
-                                location.startsWith(item.url)
-                                    ? "text-background"
-                                    : "text-foreground",
-                                playfair_display.className
-                            )}
-                            href={item.url}
-                        >
-                            {item.name}
-                        </Link>
-                        {hoveredUrl == item.url ? (
-                            <motion.div
-                                layoutId="linkHover"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="absolute top-0 left-0 bottom-0 right-0 -z-10 bg-foreground/30"
-                            />
-                        ) : null}
-                        {location.startsWith(item.url) ? (
-                            <motion.div
-                                layoutId="activePage"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="absolute top-0 left-0 bottom-0 right-0 -z-10 bg-foreground"
-                            />
-                        ) : null}
-                    </motion.li>
-                ))}
-            </motion.ul>
-        </motion.nav>
-    );
-}
-
 export default function Header() {
     const location = usePathname();
     return (
@@ -122,7 +46,7 @@ export default function Header() {
                     "flex flex-col-reverse gap-2 py-2 md:py-0 md:flex-row justify-between items-center px-8"
                 )}
             >
-                <NavBar />
+                <NavigationMenu />
                 <AnimatePresence>
                     {location !== "/" && (
                         <Link className={cn()} href={"/"}>
