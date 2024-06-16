@@ -7,6 +7,12 @@ import ThemeProvider from "@/lib/providers/theme-provider";
 import Footer from "@/components/layout/footer/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
+
+const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
+
 const inter = Poppins({
     subsets: ["latin"],
     weight: "500",
@@ -24,6 +30,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
+            <GoogleAnalytics gaId={gaId} />
+            <VercelAnalytics />
+            <VercelSpeedInsights />
             <body className={cn(inter.className)}>
                 <ThemeProvider>
                     <TooltipProvider>
