@@ -28,7 +28,7 @@ const sections = [
 export default function page() {
     return (
         <section className="flex flex-col justify-center items-center gap-8 py-20">
-            <Kicker className="text-center">
+            {/* <Kicker className="text-center">
                 Transforming your ideas into seamless digital experiences -
                 let&apos;s collaborate! I&apos;m
             </Kicker>
@@ -37,7 +37,7 @@ export default function page() {
                 let&apos;s collaborate! I&apos;m
             </p>
             <h1 className="sr-only">Sourav Rakshit</h1>
-            <NameText />
+            <NameText /> */}
             <TypewriterEffect
                 className="text-md md:text-md lg:text-xl"
                 cursorClassName="h-6 md:h-6 lg:h-8 hidden"

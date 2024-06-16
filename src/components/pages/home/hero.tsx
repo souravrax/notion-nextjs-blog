@@ -8,23 +8,6 @@ import NameText from "./name-text";
 export default function Hero() {
     return (
         <section className="w-full pt-10 pb-20 space-y-10">
-            <div className="w-full flex justify-center items-center flex-col">
-                <TypographyP>Hey there, it&apos;s me</TypographyP>
-                <NameText />
-            </div>
-            <TypewriterEffect
-                className="text-sm md:text-xl lg:text-2xl"
-                cursorClassName="h-3 md:h-4 lg:h-6"
-                words={[
-                    { text: "Peek" },
-                    { text: "into" },
-                    { text: "my" },
-                    { text: "digital" },
-                    { text: "and" },
-                    { text: "visual" },
-                    { text: "symphonies" },
-                ]}
-            />
             <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
                 <Link href="/codesmith">
                     <div className="border border-foreground/[0.2] flex flex-col items-start max-w-sm  p-4 relative h-[30rem]">

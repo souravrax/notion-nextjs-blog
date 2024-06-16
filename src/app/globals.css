@@ -2,90 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-    :root {
-
-    }
-
-    .dark {
-        --radius: 0.5rem;
-        --background: 216.5 9.09% 17.25%;
-        --foreground: 333 34% 98%;
-        --muted: 209 9.09% 12.94%;
-        --muted-foreground: 333 0% 60.77%;
-        --popover: 209 9.09% 12.94%;
-        --popover-foreground: 333 34% 98%;
-        --card: 209 9.09% 12.94%;
-        --card-foreground: 333 34% 98%;
-        --border: 333 0% 18.46%;
-        --input: 213.29 5.04% 27.25%;
-        --primary: 225.73 58.43% 65.1%;
-        --primary-foreground: -1 0% 100%;
-        --secondary: 213.29 5.04% 27.25%;
-        --secondary-foreground: 333 0% 100%;
-        --accent: 216.5 9.09% 17.25%;
-        --accent-foreground: 225.73 58.43% 65.1%;
-        --destructive: -1 86.89% 48.16%;
-        --destructive-foreground: -1 0% 0%;
-        --ring: 216.5 9.09% 17.25%;
-    }
-} */
-
 @layer base {
     :root {
-        --background: 0 0% 0%;
-        --foreground: 0 0% 98%;
-
-        --card: 0 0% 3%;
-        --card-foreground: 0 0% 98%;
-
-        --popover: 0 0% 3%;
-        --popover-foreground: 0 0% 98%;
-
-        --primary: 24 94% 47%;
-        --primary-foreground: 0 0% 98%;
-
-        --secondary: 0 0% 6%;
-        --secondary-foreground: 0 0% 98%;
-
-        --muted: 0 0% 9%;
-        --muted-foreground: 0 0% 49%;
-
-        --accent: 0 0% 6%;
-        --accent-foreground: 0 0% 98%;
-
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 98%;
-
-        --border: 0 0% 11%;
-        --input: 0 0% 16%;
-        --ring: 24 94% 40%;
-        --radius: 2rem;
+      --background: 283 36% 98%;
+      --foreground: 283 68% 2%;
+      --muted: 283 13% 92%;
+      --muted-foreground: 283 4% 37%;
+      --popover: 283 36% 98%;
+      --popover-foreground: 283 68% 2%;
+      --card: 283 36% 97%;
+      --card-foreground: 283 68% 1%;
+      --border: 220 13% 91%;
+      --input: 220 13% 91%;
+      --primary: 283 93% 25%;
+      --primary-foreground: 283 93% 85%;
+      --secondary: 283 7% 90%;
+      --secondary-foreground: 283 7% 30%;
+      --accent: 283 15% 81%;
+      --accent-foreground: 283 15% 21%;
+      --destructive: 4 84% 36%;
+      --destructive-foreground: 4 84% 96%;
+      --ring: 283 93% 25%;
+      --radius: 0.5rem;
     }
-
+  
     .dark {
-        --background: 64 30% 4%;
-        --foreground: 64 37% 98%;
-        --muted: 64 37% 6%;
-        --muted-foreground: 64 0% 72%;
-        --popover: 64 30% 4%;
-        --popover-foreground: 64 37% 98%;
-        --card: 64 30% 4%;
-        --card-foreground: 64 37% 98%;
-        --border: 215 27.9% 16.9%;
-        --input: 215 27.9% 16.9%;
-        --primary: 64 83% 80%;
-        --primary-foreground: 64 83% 20%;
-        --secondary: 64 7% 14%;
-        --secondary-foreground: 64 7% 74%;
-        --accent: 64 7% 14%;
-        --accent-foreground: 64 7% 74%;
-        --destructive: 2 87% 49%;
-        --destructive-foreground: 0 0% 100%;
-        --ring: 64 83% 80%;
-        --radius: 2rem;
+      --background: 283 47% 2%;
+      --foreground: 283 27% 98%;
+      --muted: 283 13% 8%;
+      --muted-foreground: 283 4% 63%;
+      --popover: 283 47% 2%;
+      --popover-foreground: 283 27% 98%;
+      --card: 283 47% 3%;
+      --card-foreground: 283 27% 99%;
+      --border: 215 27.9% 16.9%;
+      --input: 215 27.9% 16.9%;
+      --primary: 283 93% 25%;
+      --primary-foreground: 283 93% 85%;
+      --secondary: 283 18% 12%;
+      --secondary-foreground: 283 18% 72%;
+      --accent: 283 25% 17%;
+      --accent-foreground: 283 25% 77%;
+      --destructive: 4 84% 49%;
+      --destructive-foreground: 0 0% 100%;
+      --ring: 283 93% 25%;
     }
-}
+  }
+  
 
 @layer base {
     * {
@@ -94,7 +57,7 @@
     body {
         @apply bg-background text-foreground;
     }
-    .hero-pattern {
+    /* .hero-pattern {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='152' height='152' viewBox='0 0 152 152'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='temple' fill='%23aec9ac' fill-opacity='0.11'%3E%3Cpath d='M152 150v2H0v-2h28v-8H8v-20H0v-2h8V80h42v20h20v42H30v8h90v-8H80v-42h20V80h42v40h8V30h-8v40h-42V50H80V8h40V0h2v8h20v20h8V0h2v150zm-2 0v-28h-8v20h-20v8h28zM82 30v18h18V30H82zm20 18h20v20h18V30h-20V10H82v18h20v20zm0 2v18h18V50h-18zm20-22h18V10h-18v18zm-54 92v-18H50v18h18zm-20-18H28V82H10v38h20v20h38v-18H48v-20zm0-2V82H30v18h18zm-20 22H10v18h18v-18zm54 0v18h38v-20h20V82h-18v20h-20v20H82zm18-20H82v18h18v-18zm2-2h18V82h-18v18zm20 40v-18h18v18h-18zM30 0h-2v8H8v20H0v2h8v40h42V50h20V8H30V0zm20 48h18V30H50v18zm18-20H48v20H28v20H10V30h20V10h38v18zM30 50h18v18H30V50zm-2-40H10v18h18V10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
+    } */
 }

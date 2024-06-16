@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Zilla_Slab } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header/header";
 import { cn } from "@/lib/utils";
@@ -10,10 +10,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
+import HeroHeader from "@/components/pages/home/header";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 
-const inter = Poppins({
+const gf_zilla_slab = Zilla_Slab({
     subsets: ["latin"],
     weight: "500",
 });
@@ -33,10 +34,11 @@ export default function RootLayout({
             <GoogleAnalytics gaId={gaId} />
             <VercelAnalytics />
             <VercelSpeedInsights />
-            <body className={cn(inter.className)}>
+            <body className={cn(gf_zilla_slab.className)}>
                 <ThemeProvider>
                     <TooltipProvider>
-                        <Header />
+                        {/* <Header /> */}
+                        <HeroHeader />
                         <main className="container">{children}</main>
                         <Footer />
                     </TooltipProvider>

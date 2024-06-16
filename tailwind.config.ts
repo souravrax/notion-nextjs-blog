@@ -24,7 +24,9 @@ const config = {
                 "2xl": "1400px",
             },
         },
+
         extend: {
+            backgroundImage: {},
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -64,6 +66,7 @@ const config = {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
+                "5xl": "5rem",
             },
             keyframes: {
                 "accordion-down": {
