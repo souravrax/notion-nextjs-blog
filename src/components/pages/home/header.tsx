@@ -1,20 +1,11 @@
 "use client";
-import { TypographyH1 } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { Gloock } from "next/font/google";
-import React, { useEffect, useState } from "react";
-import {
-    AnimatePresence,
-    motion,
-    useMotionValue,
-    useMotionValueEvent,
-    useScroll,
-} from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
 import Link from "next/link";
-import DownloadResumeButton from "@/components/atoms/download-resume-button";
 import { usePathname } from "next/navigation";
-import ThemeSwitcher from "@/components/layout/header/theme-switcher";
 
 const gloock_font = Gloock({
     subsets: ["latin"],
@@ -31,10 +22,10 @@ export default function HeroHeader() {
         <AnimatePresence>
             <motion.header
                 className={cn(
-                    "flex justify-center items-center rounded-bl-5xl rounded-br-5xl py-20 select-none",
+                    "flex justify-center items-center rounded-bl-5xl rounded-br-5xl select-none",
                     isNotHome
                         ? "flex-col py-3 px-24 sticky left-0 right-0 top-0 z-50 justify-between rounded-none backdrop-blur-xl bg-secondary/30 gap-2"
-                        : "flex-col bg-secondary gap-8"
+                        : "flex-col gap-8 bg-heroImage bg-cover bg-no-repeat bg-center backdrop-blur-sm py-24 lg:py-48"
                 )}
                 initial={{ y: -200, opacity: 0 }}
                 animate={{
@@ -48,7 +39,7 @@ export default function HeroHeader() {
                         <motion.h1
                             className={cn(
                                 gloock_font.className,
-                                "font-bold uppercase text-center",
+                                "font-bold uppercase text-center text-primary",
                                 isNotHome ? "lg:text-3xl" : "lg:text-9xl",
                                 isNotHome ? "md:text-md" : "md:text-7xl",
                                 isNotHome ? "text-sm" : "text-5xl"
@@ -64,7 +55,7 @@ export default function HeroHeader() {
                     </Link>
                     {!isNotHome ? (
                         <motion.p
-                            className="font-medium text-center text-sm md:text-[10px] lg:text-[20px] max-w-screen-sm md:max-w-screen-md px-5"
+                            className="font-medium text-center text-sm md:text-[10px] lg:text-[20px] max-w-screen-sm md:max-w-screen-md px-5 text-secondary"
                             initial={{
                                 y: 100,
                                 opacity: 0,
@@ -111,7 +102,7 @@ export default function HeroHeader() {
                                         : "underline text-link",
                                     isNotHome
                                         ? "text-sm md:text-md"
-                                        : "text-md md:text-xl lg:text-3xl"
+                                        : "text-md md:text-xl lg:text-3xl text-background"
                                 )}
                                 href={item.url}
                             >
