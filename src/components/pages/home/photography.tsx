@@ -20,12 +20,6 @@ async function InstagramPosts() {
                     key={post.id}
                     className={cn(
                         "relative aspect-square w-full rounded-lg overflow-hidden"
-                        // `col-span-1 row-span-${Math.min(
-                        //     (idx % 3) + 1,
-                        //     2
-                        // )} rounded-lg bg-primary h-[${
-                        //     Math.min((idx % 3) + 1, 2) * 300
-                        // }px]`
                     )}
                 >
                     <Image
@@ -38,10 +32,6 @@ async function InstagramPosts() {
                     />
                 </div>
             ))}
-            {/* <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div> */}
-            {/* <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div> */}
-            {/* <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div> */}
-            {/* <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div> */}
         </div>
     );
 }
