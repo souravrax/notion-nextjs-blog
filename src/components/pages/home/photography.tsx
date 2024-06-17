@@ -2,10 +2,12 @@ import LandingSection from "./section";
 import { primary_font } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Suspense } from "react";
 
 async function InstagramPosts() {
     // console.log("localhost:3000/api/instagram");
     const response = await fetch(`${process.env.HOSTNAME}/api/instagram`);
+    if (!response) return null;
     const posts = await response.json();
     const images = posts.data.data.filter(
         (post: any) => post["media_type"] !== "VIDEO"
@@ -56,7 +58,9 @@ export default function Photography() {
                 >
                     Captured Moments
                 </h2>
-                <InstagramPosts />
+                <Suspense>
+                    <InstagramPosts />
+                </Suspense>
             </div>
         </LandingSection>
     );
