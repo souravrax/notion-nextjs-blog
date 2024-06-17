@@ -1,18 +1,13 @@
 import LandingSection from "./section";
 import { primary_font } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
+import { getInstagramPosts } from "@/lib/api/instagram";
 import Image from "next/image";
 import { Suspense } from "react";
 
 async function InstagramPosts() {
-    // console.log("localhost:3000/api/instagram");
-    const response = await fetch(`${process.env.HOSTNAME}/api/instagram`);
-    if (!response) return null;
-    const posts = await response.json();
-    const images = posts.data.data.filter(
-        (post: any) => post["media_type"] !== "VIDEO"
-    );
-
+    const images = await getInstagramPosts(["IMAGE", "CAROUSEL_ALBUM"]);
+    console.log(images);
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-auto w-full gap-4 relative">
             {images.map((post: any, idx: number) => (
