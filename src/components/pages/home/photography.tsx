@@ -1,7 +1,48 @@
-import React from "react";
 import LandingSection from "./section";
 import { primary_font } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+
+async function InstagramPosts() {
+    // console.log("localhost:3000/api/instagram");
+    const response = await fetch(`${process.env.HOSTNAME}/api/instagram`);
+    const posts = await response.json();
+    const images = posts.data.data.filter(
+        (post: any) => post["media_type"] !== "VIDEO"
+    );
+
+    return (
+        <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-auto w-full gap-4 relative">
+            {images.map((post: any, idx: number) => (
+                <div
+                    key={post.id}
+                    className={cn(
+                        "relative aspect-square w-full rounded-lg overflow-hidden"
+                        // `col-span-1 row-span-${Math.min(
+                        //     (idx % 3) + 1,
+                        //     2
+                        // )} rounded-lg bg-primary h-[${
+                        //     Math.min((idx % 3) + 1, 2) * 300
+                        // }px]`
+                    )}
+                >
+                    <Image
+                        fill={true}
+                        src={post.media_url}
+                        alt={post.caption}
+                        style={{
+                            objectFit: "cover",
+                        }}
+                    />
+                </div>
+            ))}
+            {/* <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div> */}
+            {/* <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div> */}
+            {/* <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div> */}
+            {/* <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div> */}
+        </div>
+    );
+}
 
 export default function Photography() {
     return (
@@ -15,12 +56,7 @@ export default function Photography() {
                 >
                     Captured Moments
                 </h2>
-                <div className="grid grid-cols-2 grid-rows-3 h-[900px] w-full gap-4">
-                    <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div>
-                    <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div>
-                    <div className="col-span-1 row-span-2 rounded-lg bg-primary"></div>
-                    <div className="col-span-1 row-span-1 rounded-lg bg-primary"></div>
-                </div>
+                <InstagramPosts />
             </div>
         </LandingSection>
     );

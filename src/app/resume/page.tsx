@@ -27,7 +27,7 @@ const sections = [
 
 export default function page() {
     return (
-        <section className="flex flex-col justify-center items-center gap-8 py-20">
+        <section className="flex flex-col justify-center items-center gap-8 py-20 container">
             {/* <Kicker className="text-center">
                 Transforming your ideas into seamless digital experiences -
                 let&apos;s collaborate! I&apos;m
@@ -39,9 +39,9 @@ export default function page() {
             <h1 className="sr-only">Sourav Rakshit</h1>
             <NameText /> */}
             <TypewriterEffect
-                className="text-md md:text-md lg:text-xl"
+                className="text-md md:text-md lg:text-xl font-light"
                 cursorClassName="h-6 md:h-6 lg:h-8 hidden"
-                words={"a passionate software developer, ready to bring your vision to life."
+                words={"A passionate software developer, ready to bring your vision to life."
                     .split(" ")
                     .map((word) => ({ text: word }))}
             />
@@ -49,7 +49,9 @@ export default function page() {
             <div className="w-full flex-wrap flex justify-center items-center gap-2">
                 {sections.map((section) => (
                     <Link key={`${section}-tag-redirect`} href={`#${section}`}>
-                        <Badge>#{section}</Badge>
+                        <Badge className="font-light tracking-wide">
+                            #{section}
+                        </Badge>
                     </Link>
                 ))}
             </div>
