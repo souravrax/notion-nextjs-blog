@@ -7,7 +7,6 @@ import { Suspense } from "react";
 
 async function InstagramPosts() {
     const images = await getInstagramPosts(["IMAGE", "CAROUSEL_ALBUM"]);
-    console.log(images);
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-auto w-full gap-4 relative">
             {images.map((post: any, idx: number) => (
