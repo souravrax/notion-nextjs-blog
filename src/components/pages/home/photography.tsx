@@ -20,6 +20,7 @@ async function InstagramPosts() {
                         fill={true}
                         src={post.media_url}
                         alt={post.caption}
+                        unoptimized
                         style={{
                             objectFit: "cover",
                         }}
