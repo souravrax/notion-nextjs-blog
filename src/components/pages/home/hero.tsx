@@ -1,6 +1,6 @@
 "use client";
 import { motion, scroll, useScroll, useTransform } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { Heading } from "./heading";
 import Image from "next/image";
 import { RefObject, useEffect, useRef } from "react";
@@ -16,7 +16,7 @@ export default function Hero() {
     return (
         <motion.section
             className={cn(
-                `relative flex justify-center items-center overflow-hidden rounded-bl-lg rounded-br-lg lg:rounded-bl-5xl lg:rounded-br-5xl flex-col gap-11 py-20`
+                `h-screen relative flex justify-end py-[5%] items-end overflow-hidden flex-col gap-11 px-5`
             )}
             initial={{
                 opacity: 0,
@@ -24,7 +24,6 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             ref={ref}
         >
-            <motion.div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-primary to-transparent"></motion.div>
             <MotionImage
                 fill={true}
                 priority={true}
@@ -43,21 +42,11 @@ export default function Hero() {
                     objectFit: "cover",
                 }}
             />
-
-            <motion.p
-                className="mix-blend-luminosity"
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-            >
-                Hey, I&apos;m
-            </motion.p>
-            <Heading />
-
             <MotionImage
                 fill={true}
                 priority={true}
                 alt="Sourav's Self Image"
-                className="select-none mix-blend-screen pointer-events-none"
+                className="select-none pointer-events-none mix-blend-screen opacity-50"
                 src="/images/cloud.png"
                 initial={{
                     opacity: 0,
@@ -65,7 +54,7 @@ export default function Hero() {
                 }}
                 animate={{
                     opacity: 0.5,
-                    x: -200,
+                    x: -300,
                 }}
                 transition={{
                     ease: "easeOut",
@@ -82,7 +71,7 @@ export default function Hero() {
                 fill={true}
                 priority={true}
                 alt="Sourav's Self Image"
-                className="pointer-events-none select-none rotate-180 mix-blend-screen"
+                className="pointer-events-none select-none rotate-180 mix-blend-screen opacity-50"
                 src="/images/cloud.png"
                 initial={{
                     opacity: 0,
@@ -90,15 +79,16 @@ export default function Hero() {
                 }}
                 animate={{
                     opacity: 0.5,
-                    x: 200,
+                    x: 300,
                 }}
                 transition={{
                     ease: "easeOut",
                     duration: 10,
                 }}
             />
+            <Heading />
             <motion.div
-                className="font-medium text-center text-sm md:text-base lg:text-lg max-w-screen-sm lg:max-w-screen-md px-5 text-white"
+                className="font-light text-right text-sm md:text-base lg:text-lg max-w-screen-sm lg:max-w-screen-md px-5 text-white"
                 key="portfolio-description"
                 initial={{
                     y: 100,
@@ -109,8 +99,8 @@ export default function Hero() {
                     y: 0,
                 }}
                 transition={{
-                    delay: 3,
-                    ease: "easeInOut",
+                    delay: 0.5,
+                    // ease: "easeInOut",
                 }}
             >
                 Embark on the digital journey of Sourav Rakshit. An adept

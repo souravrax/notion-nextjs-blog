@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import ThemeProvider from "@/lib/providers/theme-provider";
+import { cn } from "@/libs/utils";
+import ThemeProvider from "@/libs/providers/theme-provider";
 import Footer from "@/components/layout/footer/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -10,6 +10,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/header/header";
 import { secondary_font } from "@/assets/fonts";
+import SmoothScroll from "@/utils/SmoothScroll";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 
@@ -24,19 +25,21 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth">
+        <html lang="en">
             <GoogleAnalytics gaId={gaId} />
             <VercelAnalytics />
             <VercelSpeedInsights />
-            <body className={cn(secondary_font.className)}>
-                <ThemeProvider>
-                    <TooltipProvider>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </TooltipProvider>
-                </ThemeProvider>
-            </body>
+            <SmoothScroll>
+                <body className={cn(secondary_font.className)}>
+                    <ThemeProvider>
+                        <TooltipProvider>
+                            <Header />
+                            {children}
+                            <Footer />
+                        </TooltipProvider>
+                    </ThemeProvider>
+                </body>
+            </SmoothScroll>
         </html>
     );
 }

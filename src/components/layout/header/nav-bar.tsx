@@ -1,6 +1,6 @@
 import { tertiary_font } from "@/assets/fonts";
 import { navItems } from "@/config/navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 import { Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
@@ -17,7 +17,7 @@ export function NavigationMenu() {
         <motion.nav>
             <motion.ul
                 id="nav-menu"
-                className="flex flex-row gap-5 justify-center items-center"
+                className="flex flex-row justify-center items-center"
                 layout
             >
                 {navItems.map((item, idx) => (
@@ -39,7 +39,7 @@ export function NavigationMenu() {
                     >
                         <Link
                             className={cn(
-                                "uppercase px-4 py-2 text-xs font-light",
+                                "uppercase px-4 py-2 text-xs font-normal",
                                 location.startsWith(item.url)
                                     ? "text-background"
                                     : "text-foreground",

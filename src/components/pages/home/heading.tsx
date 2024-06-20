@@ -1,5 +1,5 @@
 import { primary_font } from "@/assets/fonts";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 
 export function Heading() {
@@ -7,19 +7,28 @@ export function Heading() {
         <motion.h1
             className={cn(
                 primary_font.className,
-                "font-bold uppercase text-center text-primary mix-blend-multiply",
+                "font-bold uppercase text-right text-primary tracking-widest z-10",
                 "text-7xl md:text-9xl lg:text-10xl"
             )}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ x: "100%", opacity: 0.5 }}
+            animate={{ x: "0%", opacity: 1 }}
             transition={{
-                ease: "easeInOut",
-                duration: 5,
+                // ease: "easeInOut",
+                staggerChildren: 0.5,
+                // duration: 0.5,
             }}
         >
-            Sourav
+            <motion.span
+                className={cn("text-black text-5xl md:text-7xl lg:text-8xl")}
+            >
+                Sourav
+            </motion.span>
             <br />
-            Rakshit
+            <motion.span
+                className={cn("text-white text-7xl md:text-9xl lg:text-10xl")}
+            >
+                Rakshit
+            </motion.span>
         </motion.h1>
     );
 }

@@ -8,7 +8,7 @@ import {
     TypographyP,
     TypographySmall,
 } from "@/components/ui/typography";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { CircleIcon } from "@radix-ui/react-icons";
 import React from "react";
 

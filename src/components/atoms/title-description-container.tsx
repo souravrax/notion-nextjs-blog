@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TypographyH4 } from "../ui/typography";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 type TitleDescriptionCardType = {
     title: string;

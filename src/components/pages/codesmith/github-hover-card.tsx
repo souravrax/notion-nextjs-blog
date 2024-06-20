@@ -6,8 +6,8 @@ import {
     TypographyMuted,
     TypographyP,
 } from "@/components/ui/typography";
-import { GithubProjectType } from "@/lib/api/github/type";
-import { cn } from "@/lib/utils";
+import { GithubProjectType } from "@/libs/api/github/type";
+import { cn } from "@/libs/utils";
 import {
     ArrowTopRightIcon,
     EyeOpenIcon,

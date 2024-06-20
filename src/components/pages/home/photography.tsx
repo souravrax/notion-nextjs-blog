@@ -1,12 +1,18 @@
+"use client";
 import LandingSection from "./section";
 import { primary_font } from "@/assets/fonts";
-import { cn } from "@/lib/utils";
-import { getInstagramPosts } from "@/lib/api/instagram";
+import { cn } from "@/libs/utils";
+import { getInstagramPosts } from "@/libs/api/instagram";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-async function InstagramPosts() {
-    const images = await getInstagramPosts(["IMAGE", "CAROUSEL_ALBUM"]);
+function InstagramPosts() {
+    const [images, setImages] = useState([]);
+    useEffect(() => {
+        getInstagramPosts(["IMAGE", "CAROUSEL_ALBUM"]).then((images) =>
+            setImages(images)
+        );
+    }, []);
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-auto w-full gap-4 relative">
             {images.map((post: any, idx: number) => (

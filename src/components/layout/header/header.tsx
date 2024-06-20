@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -32,8 +32,10 @@ export default function Header() {
     return (
         <motion.header
             className={cn(
-                "sticky",
-                location == "/" ? "bg-white" : "backdrop-blur-lg"
+                location == "/"
+                    ? "fixed bg-transparent"
+                    : "sticky backdrop-blur-lg",
+                "top-0 left-0  right-0 z-20"
             )}
             initial={{ opacity: 0 }}
             animate={{
@@ -46,14 +48,12 @@ export default function Header() {
                     "flex flex-col-reverse gap-2 py-2 md:py-0 md:flex-row justify-between items-center px-8"
                 )}
             >
-                <NavigationMenu />
                 <AnimatePresence>
-                    {location !== "/" && (
-                        <Link className={cn()} href={"/"}>
-                            <Logo />
-                        </Link>
-                    )}
+                    <Link className={cn()} href={"/"}>
+                        <Logo />
+                    </Link>
                 </AnimatePresence>
+                <NavigationMenu />
             </div>
         </motion.header>
     );

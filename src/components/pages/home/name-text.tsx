@@ -1,6 +1,6 @@
 "use client";
 import { SparklesCore } from "@/components/ui/sparkles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 
 export default function NameText() {

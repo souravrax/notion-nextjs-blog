@@ -1,6 +1,6 @@
 "use client";
 import { primary_font, tertiary_font } from "@/assets/fonts";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 import { ArrowDownCircle, ArrowDownToLine } from "lucide-react";
 import React from "react";

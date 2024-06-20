@@ -1,3 +1,4 @@
+"use server";
 export const getInstagramPosts = async (types: string[] = []) => {
     try {
         const data = await fetch(`${process.env.HOSTNAME}/api/instagram`);

@@ -1,5 +1,5 @@
 import { TitleDescriptionCard } from "@/components/atoms/title-description-container";
-import { getGithubRepos } from "@/lib/api/github";
+import { getGithubRepos } from "@/libs/api/github";
 import { HoverGrid } from "./github-hover-card";
 import { Suspense } from "react";
 

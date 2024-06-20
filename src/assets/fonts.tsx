@@ -1,16 +1,23 @@
-import { Gloock, Source_Sans_3, Zilla_Slab } from "next/font/google";
+import {
+    Bebas_Neue,
+    Cedarville_Cursive,
+    EB_Garamond,
+    Gloock,
+    Inter,
+    Source_Sans_3,
+    Zilla_Slab,
+} from "next/font/google";
 
-export const primary_font = Gloock({
+export const primary_font = Bebas_Neue({
     subsets: ["latin"],
     weight: "400",
 });
 
-export const secondary_font = Zilla_Slab({
+export const secondary_font = Inter({
     subsets: ["latin"],
-    weight: "500",
+    // weight: "500",
 });
 
-export const tertiary_font = Source_Sans_3({
+export const tertiary_font = Inter({
     subsets: ["latin"],
-    weight: ["400"],
 });
