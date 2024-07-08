@@ -20,26 +20,31 @@ export async function GET(request: NextRequest) {
   const results: QueryDatabaseResponse["results"] = [];
   let nextCursor = null;
 
-  do {
-    nextCursor = null;
-    const blogs = await notion.databases.query({
-      filter: {
-        property: "Status",
-        status: {
-          equals: "Done",
+  try {
+    do {
+      nextCursor = null;
+      const blogs = await notion.databases.query({
+        filter: {
+          property: "Status",
+          status: {
+            equals: "Done",
+          },
         },
-      },
-      database_id: process.env.NOTION_DATABASE_ID!,
-      sorts: [
-        {
-          property: "Date",
-          direction: "descending",
-        },
-      ],
-    });
-    results.push(...blogs.results);
-    nextCursor = blogs.next_cursor;
-  } while (nextCursor !== null);
+        database_id: process.env.NOTION_DATABASE_ID!,
+        sorts: [
+          {
+            property: "Date",
+            direction: "descending",
+          },
+        ],
+      });
+      results.push(...blogs.results);
+      nextCursor = blogs.next_cursor;
+    } while (nextCursor !== null);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json([]);
+  }
 
   return NextResponse.json(results);
 }

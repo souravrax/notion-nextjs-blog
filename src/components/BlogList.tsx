@@ -1,11 +1,11 @@
 //@ts-nocheck
 import { getBlogs } from "@/lib/helpers/api";
 import { Link } from "lucide-react";
+import { isArray } from "util";
 
 export async function BlogList() {
   const blogs = await getBlogs();
-  if (!blogs || blogs.length === 0) return null;
-  //   const blogs: QueryDatabaseResponse["results"] = [];
+  if (!isArray(blogs)) return null;
   return blogs.map((blog, index) => (
     <div
       key={index}
