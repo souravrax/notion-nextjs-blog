@@ -4,6 +4,7 @@ import { Link } from "lucide-react";
 
 export async function BlogList() {
   const blogs = await getBlogs();
+  if (!blogs || blogs.length === 0) return null;
   //   const blogs: QueryDatabaseResponse["results"] = [];
   return blogs.map((blog, index) => (
     <div
