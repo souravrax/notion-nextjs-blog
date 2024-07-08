@@ -20,7 +20,7 @@ export async function getBlogs(limit?: number, offset?: number) {
     },
   });
   const data = await res.json();
-  return data as QueryDatabaseResponse["results"];
+  return (data as QueryDatabaseResponse["results"]) ?? [];
 }
 
 export async function getBlog(blogId: string) {
@@ -42,8 +42,9 @@ export async function getBlog(blogId: string) {
       tags: [`blog:${blogId}`, "blog"],
     },
   });
-  const metadata: NotionPageMetadata = await metadataDto.json();
-  const content: ListBlockChildrenResponse["results"] = await contentDto.json();
+  const metadata: NotionPageMetadata = (await metadataDto.json()) ?? {};
+  const content: ListBlockChildrenResponse["results"] =
+    (await contentDto.json()) ?? [];
   return {
     metadata,
     content,
