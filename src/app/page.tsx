@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import {
   SiGithub as GithubIcon,
   SiLinkedin as LinkedinIcon,

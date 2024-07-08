@@ -1,4 +1,4 @@
-import { validateToken } from "@/libs/utils";
+import { validateToken } from "@/lib/utils";
 import { Client } from "@notionhq/client";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(

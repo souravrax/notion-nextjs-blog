@@ -1,4 +1,4 @@
-import { validateToken } from "@/libs/utils";
+import { validateToken } from "@/lib/utils";
 import { Client } from "@notionhq/client";
 import { NextResponse } from "next/server";
 

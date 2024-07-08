@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/libs/utils";
-import ThemeProvider from "@/libs/providers/theme-provider";
+import { cn } from "@/lib/utils";
+import ThemeProvider from "@/lib/providers/theme-provider";
 
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
-import SmoothScroll from "@/libs/SmoothScroll";
+import SmoothScroll from "@/lib/SmoothScroll";
 import { Bitter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-export const bitterFont = Bitter({
+const bitterFont = Bitter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });

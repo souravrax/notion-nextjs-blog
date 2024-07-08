@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
-import { validateToken } from "@/libs/utils";
+import { validateToken } from "@/lib/utils";
 export async function GET(request: NextRequest) {
   const headers = new Headers(request.headers);
   const token = headers.get("Authorization");
