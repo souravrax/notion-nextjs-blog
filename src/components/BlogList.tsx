@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { getBlogs } from "@/lib/helpers/api";
 import { isArray } from "util";
-import { Link } from "next/link";
+import Link from "next/link";
 
 export async function BlogList() {
   const blogs = await getBlogs();
