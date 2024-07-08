@@ -1,6 +1,6 @@
 "use client";
 import LandingSection from "./section";
-import { primary_font } from "@/assets/fonts";
+import { primary_font } from "../../../../archive/assets/fonts";
 import { cn } from "@/libs/utils";
 import { getInstagramPosts } from "@/libs/api/instagram";
 import Image from "next/image";

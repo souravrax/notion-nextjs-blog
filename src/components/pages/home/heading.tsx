@@ -1,4 +1,4 @@
-import { primary_font } from "@/assets/fonts";
+import { primary_font } from "../../../../archive/assets/fonts";
 import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 

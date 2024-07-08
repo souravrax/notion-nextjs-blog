@@ -1,6 +1,6 @@
 import React from "react";
 import LandingSection from "./section";
-import { primary_font } from "@/assets/fonts";
+import { primary_font } from "../../../../archive/assets/fonts";
 import { cn } from "@/libs/utils";
 
 export default function About() {
