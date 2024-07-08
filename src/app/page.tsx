@@ -10,6 +10,11 @@ import Link from "next/link";
 import Menu from "@/components/Menu";
 import { blogs } from "@/data/blogs";
 import dynamic from "next/dynamic";
+import { getBlogs } from "@/lib/helpers/api";
+import {
+  DatabaseObjectResponse,
+  PartialDatabaseObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 
 const ThemeSwitcher = dynamic(() => import("@/components/theme-switcher"), {
   ssr: false,
@@ -83,23 +88,34 @@ function Blogs() {
       id="blogs"
       className="mx-auto grid max-w-screen-2xl gap-4 px-8 md:px-16 lg:px-32"
     >
-      {blogs.map((blog, index) => (
-        <Link href={`/${index}`} target="_blank" key={blog.title}>
-          <div
-            key={index}
-            className="flex h-full flex-col items-start justify-center p-4"
-          >
-            <h2 className="text-xl font-bold text-primary md:text-2xl lg:text-4xl">
-              {blog.title}
-            </h2>
-            <div className="flex items-center gap-4 text-sm md:text-base lg:text-lg">
-              <p className="">{blog.creation_date}</p>
-              <span className="h-1/2 border"></span>
-              <p className="">Views {blog.view_count}</p>
-            </div>
-          </div>
-        </Link>
-      ))}
+      <BlogList />
     </section>
   );
+}
+
+async function BlogList() {
+  const blogs = await getBlogs();
+  return blogs.map((blog, index) => (
+    <div
+      key={index}
+      className="flex h-full flex-col items-start justify-center p-4"
+    >
+      <Link href={`/${blog.id}`} target="_blank" key={blog.id}>
+        <h2 className="text-xl font-bold text-primary md:text-2xl lg:text-4xl">
+          {blog.properties.Title.title[0].plain_text}
+        </h2>
+      </Link>
+      <div className="flex items-center gap-4 text-sm md:text-base lg:text-lg">
+        <p className="">{blog.properties.Date.date.start}</p>
+        <span className="h-1/2 border"></span>
+        <div className="flex items-center">
+          {blog.properties.Tags["multi_select"].map((tag, index) => (
+            <span key={index} className="rounded-full px-2 py-1 text-sm">
+              #{tag.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  ));
 }

@@ -12,6 +12,8 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  console.info("Info: Cache missed for Blog List");
+
   const notion = new Client({
     auth: process.env.NOTION_TOKEN!,
   });

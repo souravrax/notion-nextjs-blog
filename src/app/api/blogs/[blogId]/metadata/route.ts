@@ -14,6 +14,8 @@ export async function GET(
     });
   }
 
+  console.info(`Info: Cache missed for Blog Metadata: ${params.blogId}`);
+
   const blogId = params.blogId;
   const notion = new Client({
     auth: process.env.NOTION_TOKEN!,
