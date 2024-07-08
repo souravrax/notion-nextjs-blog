@@ -1,10 +1,15 @@
 //@ts-nocheck
 import { getBlogs } from "@/lib/helpers/api";
-import { Link } from "lucide-react";
 import { isArray } from "util";
+import { Link } from "next/link";
 
 export async function BlogList() {
   const blogs = await getBlogs();
+  try {
+    console.log("Rendering BlogList", JSON.stringify(blogs));
+  } catch (e) {
+    console.error("Blog List is not rendering", e);
+  }
   if (!isArray(blogs)) return null;
   return blogs.map((blog, index) => (
     <div
