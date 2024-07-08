@@ -8,7 +8,7 @@ export async function BlogList() {
   try {
     console.log("Rendering BlogList", JSON.stringify(blogs));
   } catch (e) {
-    console.error("Blog List is not rendering", e);
+    console.error("BlogList is not rendering", e);
   }
   if (!isArray(blogs)) return null;
   return blogs.map((blog, index) => (
