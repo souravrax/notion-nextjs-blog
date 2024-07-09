@@ -1,4 +1,5 @@
 import {
+  BlockObjectResponse,
   ListBlockChildrenResponse,
   QueryDatabaseResponse,
 } from "@notionhq/client/build/src/api-endpoints";
@@ -23,8 +24,22 @@ export async function getBlogs(limit?: number, offset?: number) {
   return data as QueryDatabaseResponse["results"];
 }
 
-export async function getBlog(blogId: string) {
-  const metadataDto = await fetch(`${baseURL}/api/blogs/${blogId}/metadata`, {
+export async function getBlockData(blockId: string) {
+  const res = await fetch(`${baseURL}/api/blogs/${blockId}/content`, {
+    headers: {
+      Authorization: authToken,
+    },
+    next: {
+      revalidate,
+      tags: [`blog:${blockId}`, "blog"],
+    },
+  });
+  const data = await res.json();
+  return data as BlockObjectResponse[];
+}
+
+export async function getPageMetadata(blogId: string) {
+  const res = await fetch(`${baseURL}/api/blogs/${blogId}/metadata`, {
     headers: {
       Authorization: authToken,
     },
@@ -33,20 +48,6 @@ export async function getBlog(blogId: string) {
       tags: [`blog:${blogId}`, "blog"],
     },
   });
-  const contentDto = await fetch(`${baseURL}/api/blogs/${blogId}/content`, {
-    headers: {
-      Authorization: authToken,
-    },
-    next: {
-      revalidate,
-      tags: [`blog:${blogId}`, "blog"],
-    },
-  });
-  const metadata: NotionPageMetadata = (await metadataDto.json()) ?? {};
-  const content: ListBlockChildrenResponse["results"] =
-    (await contentDto.json()) ?? [];
-  return {
-    metadata,
-    content,
-  };
+  const data = await res.json();
+  return data as NotionPageMetadata;
 }

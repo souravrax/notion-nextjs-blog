@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
         database_id: process.env.NOTION_DATABASE_ID!,
         sorts: [
           {
-            property: "Date",
+            timestamp: "created_time",
             direction: "descending",
           },
         ],

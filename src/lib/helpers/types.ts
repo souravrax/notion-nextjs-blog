@@ -1,4 +1,6 @@
 export type NotionPageMetadata = {
+  last_edited_time: string;
+  created_time: string;
   properties: {
     Status: {
       id: string;

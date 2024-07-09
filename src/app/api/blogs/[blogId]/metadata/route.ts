@@ -1,5 +1,6 @@
 import { validateToken } from "@/lib/utils";
 import { Client } from "@notionhq/client";
+import { GetPageResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -21,9 +22,13 @@ export async function GET(
     auth: process.env.NOTION_TOKEN!,
   });
 
-  const metadata: any = await notion.pages.retrieve({
-    page_id: blogId,
-  });
-
-  return NextResponse.json(metadata?.properties ?? {});
+  try {
+    const metadata: GetPageResponse = await notion.pages.retrieve({
+      page_id: blogId,
+    });
+    return NextResponse.json(metadata ?? {});
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({});
+  }
 }

@@ -9,6 +9,7 @@ import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/nex
 import SmoothScroll from "@/lib/SmoothScroll";
 import { Bitter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Header from "@/components/Header";
 
 const bitterFont = Bitter({
   subsets: ["latin"],
