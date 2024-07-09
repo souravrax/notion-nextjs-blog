@@ -12,6 +12,16 @@ const nextConfig = {
                 hostname: "scontent.cdninstagram.com",
                 port: "",
             },
+            {
+                protocol: "https",
+                hostname: "media4.giphy.com",
+                port: "",
+            },
+            {
+                protocol: "https",
+                hostname: "images.unsplash.com",
+                port: "",
+            }
         ]
     }
 };

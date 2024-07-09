@@ -1,7 +1,8 @@
-//@ts-nocheck
+// @ts-nocheck
 import { getBlogs } from "@/lib/helpers/api";
 import { isArray } from "util";
 import Link from "next/link";
+import { convertTimestampToDate } from "@/lib/utils";
 
 export async function BlogList() {
   const blogs = await getBlogs();
@@ -14,23 +15,27 @@ export async function BlogList() {
   return blogs.map((blog, index) => (
     <div
       key={index}
-      className="flex h-full flex-col items-start justify-center p-4"
+      className="flex h-full flex-col items-start justify-center gap-2 p-4"
     >
       <Link href={`/blog/${blog.id}`} key={blog.id}>
-        <h2 className="text-xl font-bold text-primary md:text-2xl lg:text-4xl">
+        <h2 className="text-xl font-extrabold text-primary transition-all hover:scale-[101%] md:text-2xl lg:text-4xl">
           {blog.properties.Title.title[0].plain_text}
         </h2>
       </Link>
-      <div className="flex items-center gap-4 text-sm md:text-base lg:text-lg">
-        <p className="">{blog.last_edited_time}</p>
-        <span className="h-1/2 border"></span>
-        <div className="flex items-center">
+      <div className="flex flex-col items-start gap-1 text-sm md:text-base lg:text-lg">
+        <div className="flex flex-wrap items-center gap-1">
           {blog.properties.Tags["multi_select"].map((tag, index) => (
-            <span key={index} className="rounded-full px-2 py-1 text-sm">
+            <span
+              key={index}
+              className="rounded-full bg-foreground/50 px-2 py-0.5 text-xs text-background"
+            >
               #{tag.name}
             </span>
           ))}
         </div>
+        <p className="text-sm">
+          {convertTimestampToDate(blog.last_edited_time)}
+        </p>
       </div>
     </div>
   ));

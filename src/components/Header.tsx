@@ -20,6 +20,32 @@ const HagmolyaFont = localFont({
   display: "swap",
 });
 
+const AuthorFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Author/Author-Light.woff2",
+      weight: "300",
+    },
+    {
+      path: "../../public/fonts/Author/Author-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../../public/fonts/Author/Author-Medium.woff2",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/Author/Author-SemiBold.woff2",
+      weight: "600",
+    },
+    {
+      path: "../../public/fonts/Author/Author-Bold.woff2",
+      weight: "700",
+    },
+  ],
+  display: "swap",
+});
+
 const socialLinks = [
   { name: "Github", icon: GithubIcon, url: "https://github.com/souravrax" },
   {

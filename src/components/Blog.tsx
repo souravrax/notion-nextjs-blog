@@ -1,19 +1,45 @@
 import { getBlockData, getPageMetadata } from "@/lib/helpers/api";
-import { cn } from "@/lib/utils";
+import { cn, convertTimestampToDate } from "@/lib/utils";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { Inter } from "next/font/google";
 
-import { RichText } from "@/components/notion/RichText";
 import { Heading1, Heading2, Heading3 } from "@/components/notion/Heading";
 import { Paragraph } from "@/components/notion/Paragraph";
 import dynamic from "next/dynamic";
-const Code = dynamic(() => import("./notion/Code"), { ssr: false });
+const Code = dynamic(() => import("@/components/notion/Code"), { ssr: false });
+import { Image as NotionImage } from "@/components/notion/Image";
+import Callout from "./notion/Callout";
+import Quote from "./notion/Quote";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const TelmaFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Telma/Telma-Light.woff2",
+      weight: "300",
+    },
+    {
+      path: "../../public/fonts/Telma/Telma-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../../public/fonts/Telma/Telma-Medium.woff2",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/Telma/Telma-Bold.woff2",
+      weight: "700",
+    },
+    {
+      path: "../../public/fonts/Telma/Telma-Black.woff2",
+      weight: "900",
+    },
+  ],
+  display: "swap",
+});
 
 export default function Blog({ blogId }: { blogId: string }) {
   return (
-    <section className="mx-auto max-w-6xl space-y-12 px-8">
+    <section className="mx-auto max-w-6xl space-y-12 px-4 md:px-8">
       <BlogMetadata blogId={blogId} />
       <BlogContent blogId={blogId} />
     </section>
@@ -25,13 +51,15 @@ async function BlogMetadata({ blogId }: { blogId: string }) {
   if (!metadata) return null;
   return (
     <section className="flex w-full flex-col items-center justify-center gap-4">
-      <p className="flex justify-end text-lg">
-        Created on{metadata.created_time}
-      </p>
-      <p className="flex justify-end text-lg">
-        Last edited on {metadata.last_edited_time}
-      </p>
-      <h1 className="text-5xl font-black">
+      <div className="font-xs flex flex-col items-center justify-center text-sm font-semibold text-primary">
+        <p>{convertTimestampToDate(metadata.last_edited_time)}</p>
+      </div>
+      <h1
+        className={cn(
+          TelmaFont.className,
+          "text-center text-5xl font-black md:text-7xl",
+        )}
+      >
         {metadata.properties.Title.title[0].plain_text}
       </h1>
       <ul className="flex flex-wrap gap-2">
@@ -54,7 +82,7 @@ async function BlogContent({ blogId }: { blogId: string }) {
   const content: BlockObjectResponse[] = await getBlockData(blogId);
   if (!content) return null;
   return (
-    <section className={cn("mx-auto max-w-4xl px-8")}>
+    <section className={cn("mx-auto max-w-4xl space-y-3 px-0 md:px-8")}>
       {content.map((block, index) => (
         <Block block={block} key={index} />
       ))}
@@ -74,6 +102,12 @@ function Block({ block }: { block: BlockObjectResponse }) {
       return <Paragraph content={block.paragraph} />;
     case "code":
       return <Code content={block.code} />;
+    case "image":
+      return <NotionImage content={block.image} />;
+    case "callout":
+      return <Callout content={block.callout} />;
+    case "quote":
+      return <Quote content={block.quote} />;
     default:
       return null;
   }
