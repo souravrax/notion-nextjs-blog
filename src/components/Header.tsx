@@ -35,7 +35,7 @@ const AuthorFont = localFont({
       weight: "500",
     },
     {
-      path: "../../public/fonts/Author/Author-SemiBold.woff2",
+      path: "../../public/fonts/Author/Author-Semibold.woff2",
       weight: "600",
     },
     {
