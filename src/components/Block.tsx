@@ -5,8 +5,10 @@ import { Paragraph } from "./notion/Paragraph";
 import { Heading1, Heading2, Heading3 } from "./notion/Heading";
 import Code from "./notion/Code";
 import { Image as NotionImage } from "./notion/Image";
-import Quote from "./notion/Quote";
-import NotionTable from "./notion/Table";
+import { Quote } from "./notion/Quote";
+import { NotionTable } from "./notion/Table";
+import { ToggleList } from "./notion/ToggleList/ToggleList";
+import { Separator } from "./ui/separator";
 
 export function Block({
   block,
@@ -46,8 +48,10 @@ export function Block({
       );
     case "table":
       return <NotionTable content={block} />;
-    default:
-      return null;
+    case "toggle":
+      return <ToggleList content={block} />;
+    case "divider":
+      return <Separator />;
   }
-  return null;
+  return <div>Not Implemented</div>;
 }

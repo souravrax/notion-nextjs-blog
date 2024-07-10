@@ -6,7 +6,12 @@ import {
 import React, { Suspense } from "react";
 import { RichText } from "./RichText";
 import { Skeleton } from "../ui/skeleton";
-import { CircleIcon, Square, SquareIcon } from "lucide-react";
+import {
+  CircleIcon,
+  CornerDownRightIcon,
+  Square,
+  SquareIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Block } from "../Block";
 
@@ -29,7 +34,23 @@ export async function UnorderedListItem({
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <span>
-            {depth % 4 < 2 ? (
+            {depth === 0 ? (
+              <CircleIcon
+                size={14}
+                className={cn(
+                  depth & 1 ? "fill-none" : "fill-foreground",
+                  `opacity-${Math.max(100 - depth * 10, 10)}`,
+                )}
+              />
+            ) : (
+              <CornerDownRightIcon
+                style={{
+                  opacity: Math.max(100 - depth * 30, 10) / 100,
+                }}
+                size={24}
+              />
+            )}
+            {/* {depth % 4 < 2 ? (
               <CircleIcon
                 size={10}
                 className={cn(depth & 1 ? "fill-none" : "fill-foreground")}
@@ -39,7 +60,7 @@ export async function UnorderedListItem({
                 size={10}
                 className={cn(depth & 1 ? "fill-none" : "fill-foreground")}
               />
-            )}
+            )} */}
           </span>
           <RichText items={content["bulleted_list_item"]["rich_text"]} />
         </div>

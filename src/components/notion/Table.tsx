@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/table";
 import { RichText } from "./RichText";
 
-export default async function NotionTable({
+export async function NotionTable({
   content,
 }: {
   content: TableBlockObjectResponse;
