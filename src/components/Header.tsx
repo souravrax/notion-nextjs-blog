@@ -3,12 +3,7 @@ import Menu from "@/components/Menu";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import {
-  SiGithub as GithubIcon,
-  SiLinkedin as LinkedinIcon,
-  SiInstagram as InstagramIcon,
-  SiGmail as GmailIcon,
-} from "@icons-pack/react-simple-icons";
+
 import { cn } from "@/lib/utils";
 
 const ThemeSwitcher = dynamic(() => import("@/components/theme-switcher"), {
@@ -46,53 +41,38 @@ const AuthorFont = localFont({
   display: "swap",
 });
 
-const socialLinks = [
-  { name: "Github", icon: GithubIcon, url: "https://github.com/souravrax" },
-  {
-    name: "LinkedIn",
-    icon: LinkedinIcon,
-    url: "https://www.linkedin.com/in/souravrax/",
-  },
-  {
-    name: "Instagram",
-    icon: InstagramIcon,
-    url: "https://www.instagram.com/rax.lens/",
-  },
-  {
-    name: "Gmail",
-    icon: GmailIcon,
-    url: "mailto:rakshitsourav3@gmail.com",
-  },
-];
-
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 mx-auto max-w-screen-2xl px-4 py-2 md:px-16 md:py-4 lg:px-32">
-      <div className="grid w-full grid-cols-2 items-center justify-center gap-4 rounded-full border border-foreground bg-background/30 p-2 backdrop-blur-xl md:p-4 lg:grid-cols-3 lg:p-6">
+    <header className="mx-auto max-w-screen-lg px-4 py-4 md:px-16 md:py-8 lg:px-32">
+      <div className="flex w-full items-center justify-between gap-4 rounded-full bg-background/30 backdrop-blur-xl">
+        <Link href="/">
+          <h1
+            className={cn(
+              HagmolyaFont.className,
+              "bg-clip-text text-end text-4xl text-foreground md:text-5xl lg:text-center lg:text-6xl",
+            )}
+          >
+            Blogs
+          </h1>
+        </Link>
         <div className="flex items-center justify-start gap-1.5">
-          <Menu />
-          <Link href="/">
-            <p className="text-nowrap rounded-full bg-foreground p-4 text-center text-sm font-light uppercase text-background md:text-lg">
+          <p className="text-xs lowercase">By</p>
+          <Link href="https://www.souravrax.com/" target="_blank">
+            <p
+              className={cn(
+                "font-base text-nowrap rounded-full text-center text-base uppercase text-primary transition-all hover:scale-[101%] md:text-lg lg:text-xl",
+                // AuthorFont.className,
+                "bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] bg-clip-text text-transparent",
+              )}
+            >
               Sourav Rakshit
             </p>
           </Link>
-        </div>
-        <h1
-          className={cn(
-            HagmolyaFont.className,
-            "text-end text-5xl text-foreground md:text-6xl lg:text-center lg:text-7xl",
-          )}
-        >
-          Blogs
-        </h1>
-
-        <div className="hidden justify-end gap-4 lg:flex">
-          <ThemeSwitcher />
-          {socialLinks.map((link, index) => (
-            <Link key={index} href={link.url} target="_blank">
-              <link.icon size={24} />
-            </Link>
-          ))}
+          {/* <Menu> */}
+          <div className="flex items-center justify-center gap-4 rounded-full bg-primary p-2 text-white">
+            <ThemeSwitcher />
+          </div>
+          {/* </Menu> */}
         </div>
       </div>
     </header>

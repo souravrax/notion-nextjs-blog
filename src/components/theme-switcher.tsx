@@ -1,34 +1,40 @@
 "use client";
 import { useTheme } from "next-themes";
-import { MoonStarIcon, SunIcon } from "lucide-react";
+import { LaptopIcon, MoonStarIcon, SunIcon } from "lucide-react";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import { useEffect, useState } from "react";
 
-const themes = [
-  {
-    label: "Black",
-    value: "black",
-  },
-  {
-    label: "Dark",
-    value: "dark",
-  },
-];
+const themes = {
+  dark: <MoonStarIcon size={16} />,
+  light: <SunIcon size={16} />,
+  system: <LaptopIcon size={16} />,
+};
 
 export default function ThemeSwitcher() {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const changeTheme = () => {
+    setTheme(
+      theme === "dark" ? "system" : theme === "light" ? "dark" : "light",
+    );
+  };
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-          {theme === "dark" ? (
-            <SunIcon className="h-6 w-6" />
-          ) : (
-            <MoonStarIcon className="h-6 w-6" />
-          )}
+        <button onClick={changeTheme}>
+          {themes[theme as keyof typeof themes]}
         </button>
       </TooltipTrigger>
       <TooltipContent className="uppercase">Toggle theme</TooltipContent>

@@ -39,7 +39,7 @@ const TelmaFont = localFont({
 
 export default function Blog({ blogId }: { blogId: string }) {
   return (
-    <section className="mx-auto max-w-6xl space-y-12 px-4 md:px-8">
+    <section className="space-y-12">
       <BlogMetadata blogId={blogId} />
       <BlogContent blogId={blogId} />
     </section>
@@ -50,7 +50,7 @@ async function BlogMetadata({ blogId }: { blogId: string }) {
   const metadata = await getPageMetadata(blogId);
   if (!metadata) return null;
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4">
       <div className="font-xs flex flex-col items-center justify-center text-sm font-semibold text-primary">
         <p>{convertTimestampToDate(metadata.last_edited_time)}</p>
       </div>
@@ -74,7 +74,7 @@ async function BlogMetadata({ blogId }: { blogId: string }) {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 
@@ -82,11 +82,11 @@ async function BlogContent({ blogId }: { blogId: string }) {
   const content: BlockObjectResponse[] = await getBlockData(blogId);
   if (!content) return null;
   return (
-    <section className={cn("mx-auto max-w-4xl space-y-3 px-0 md:px-8")}>
+    <div className={cn("space-y-3")}>
       {content.map((block, index) => (
         <Block block={block} key={index} />
       ))}
-    </section>
+    </div>
   );
 }
 

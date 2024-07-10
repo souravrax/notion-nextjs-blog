@@ -1,11 +1,8 @@
 import {
-  BlockObjectResponse,
-  CodeBlockObjectResponse,
   Heading1BlockObjectResponse,
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import React from "react";
 import { RichText } from "./RichText";
 
 export function Heading1({
@@ -38,7 +35,7 @@ export function Heading3({
   content: Heading3BlockObjectResponse["heading_3"];
 }) {
   return (
-    <h3 className="text-xl font-semibold">
+    <h3 className="text-xl font-bold">
       <RichText items={content.rich_text} />
     </h3>
   );

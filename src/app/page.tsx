@@ -3,10 +3,8 @@ import Header from "@/components/Header";
 
 export default function page() {
   return (
-    <main className="space-y-12">
-      <Header />
+    <main className="mx-auto max-w-screen-lg px-4 py-4 md:px-16 md:py-8 lg:px-32">
       <Blogs />
-      <footer className="h-48"></footer>
     </main>
   );
 }
@@ -15,7 +13,7 @@ function Blogs() {
   return (
     <section
       id="blogs"
-      className="mx-auto grid max-w-screen-2xl gap-4 px-8 md:px-16 lg:px-32"
+      className="flex h-full flex-col items-start justify-center gap-2 space-y-8"
     >
       <BlogList />
     </section>

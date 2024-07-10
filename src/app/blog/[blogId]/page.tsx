@@ -11,17 +11,7 @@ export default function page({
 }>) {
   if (!blogId) return null;
   return (
-    <main className="space-y-12">
-      {/* <Header /> */}
-      <section className="flex w-full items-center justify-between gap-4 px-32 py-8">
-        <Link
-          href="/"
-          className="flex items-center justify-between gap-2 rounded-full bg-foreground px-4 py-2 font-bold text-background"
-        >
-          Back
-          <Undo2Icon />
-        </Link>
-      </section>
+    <main className="mx-auto max-w-screen-lg px-4 py-4 md:px-16 md:py-8 lg:px-32">
       <Blog blogId={blogId} />
     </main>
   );
