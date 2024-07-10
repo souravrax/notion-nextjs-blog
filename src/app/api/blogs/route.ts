@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { validateToken } from "@/lib/utils";
+import { NotionThrottle } from "@/lib/throttle";
 export async function GET(request: NextRequest) {
   const headers = new Headers(request.headers);
   const token = headers.get("Authorization");
@@ -23,6 +24,7 @@ export async function GET(request: NextRequest) {
   try {
     do {
       nextCursor = null;
+      await NotionThrottle.throttle();
       const blogs = await notion.databases.query({
         filter: {
           property: "Status",

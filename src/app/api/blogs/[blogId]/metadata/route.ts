@@ -1,3 +1,4 @@
+import { NotionThrottle } from "@/lib/throttle";
 import { validateToken } from "@/lib/utils";
 import { Client } from "@notionhq/client";
 import { GetPageResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -23,6 +24,7 @@ export async function GET(
   });
 
   try {
+    await NotionThrottle.throttle();
     const metadata: GetPageResponse = await notion.pages.retrieve({
       page_id: blogId,
     });
