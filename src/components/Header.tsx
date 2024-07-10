@@ -60,7 +60,7 @@ export default function Header() {
           <Link href="https://www.souravrax.com/" target="_blank">
             <p
               className={cn(
-                "font-base text-nowrap rounded-full text-center text-base uppercase text-primary transition-all hover:scale-[101%] md:text-lg lg:text-xl",
+                "font-base text-nowrap rounded-full text-center text-base text-primary transition-all hover:scale-[101%] md:text-lg lg:text-xl",
                 // AuthorFont.className,
                 "bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] bg-clip-text text-transparent",
               )}

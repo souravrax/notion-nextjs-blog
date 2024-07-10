@@ -6,6 +6,7 @@ import {
   SiGmail as GmailIcon,
 } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const socialLinks = [
   { name: "Github", icon: GithubIcon, url: "https://github.com/souravrax" },
@@ -28,12 +29,26 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="h-48">
-      {socialLinks.map((link, index) => (
-        <Link key={index} href={link.url} target="_blank">
-          <link.icon size={24} />
-        </Link>
-      ))}
+    <footer
+      className={cn(
+        "mx-auto max-w-screen-lg space-y-4 px-4 py-32 md:px-16 lg:px-32",
+      )}
+    >
+      <div className="flex w-full items-center justify-center gap-4 text-foreground/70">
+        {socialLinks.map((link, index) => (
+          <Link
+            key={index}
+            href={link.url}
+            target="_blank"
+            className="hover:scale-[105%]"
+          >
+            <link.icon size={24} />
+          </Link>
+        ))}
+      </div>
+      <p className="w-full text-center font-mono text-xs text-foreground/70">
+        Made with ❤️ by Sourav Rakshit
+      </p>
     </footer>
   );
 }

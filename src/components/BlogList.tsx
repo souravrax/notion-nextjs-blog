@@ -14,8 +14,7 @@ export async function BlogList() {
     console.error("BlogList is not rendering", e);
   }
   if (!isArray(blogs)) return null;
-  const all_blogs = [...blogs, ...blogs, ...blogs, ...blogs];
-  return all_blogs.map((blog, index) => (
+  return blogs.map((blog, index) => (
     <div key={index} className="flex flex-col gap-2">
       <Link href={`/blog/${blog.id}`} key={blog.id}>
         <h2 className="text-2xl font-extrabold text-primary transition-all hover:scale-[101%] md:text-2xl lg:text-4xl">
