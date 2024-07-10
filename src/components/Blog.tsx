@@ -1,16 +1,7 @@
 import { getBlockData, getPageMetadata } from "@/lib/helpers/api";
 import { cn, convertTimestampToDate } from "@/lib/utils";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-
-import { Heading1, Heading2, Heading3 } from "@/components/notion/Heading";
-import { Paragraph } from "@/components/notion/Paragraph";
-import dynamic from "next/dynamic";
-const Code = dynamic(() => import("@/components/notion/Code"), { ssr: false });
-import { Image as NotionImage } from "@/components/notion/Image";
-import Callout from "./notion/Callout";
-import Quote from "./notion/Quote";
 import localFont from "next/font/local";
-import { OrderedListItem, UnorderedListItem } from "./notion/ListItem";
 import { Block } from "./Block";
 
 const TelmaFont = localFont({
@@ -95,13 +86,7 @@ async function BlogContent({ blogId }: { blogId: string }) {
         }
         lastBlockType = block.type;
         return (
-          <Block
-            block={block}
-            key={index}
-            index={index}
-            blockTrail={blockTrail}
-            depth={0}
-          />
+          <Block block={block} key={index} blockTrail={blockTrail} depth={0} />
         );
       })}
     </div>
