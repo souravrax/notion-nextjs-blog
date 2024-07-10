@@ -6,6 +6,7 @@ import { Heading1, Heading2, Heading3 } from "./notion/Heading";
 import Code from "./notion/Code";
 import { Image as NotionImage } from "./notion/Image";
 import Quote from "./notion/Quote";
+import NotionTable from "./notion/Table";
 
 export function Block({
   block,
@@ -43,6 +44,8 @@ export function Block({
           depth={depth}
         />
       );
+    case "table":
+      return <NotionTable content={block} />;
     default:
       return null;
   }

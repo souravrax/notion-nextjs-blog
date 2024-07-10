@@ -33,7 +33,10 @@ export default function ThemeSwitcher() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button onClick={changeTheme}>
+        <button
+          onClick={changeTheme}
+          className="flex items-center justify-center gap-4 rounded-full bg-primary p-2 text-white"
+        >
           {themes[theme as keyof typeof themes]}
         </button>
       </TooltipTrigger>

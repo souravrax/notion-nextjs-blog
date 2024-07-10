@@ -1,5 +1,3 @@
-import React from "react";
-import Menu from "@/components/Menu";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
@@ -61,18 +59,13 @@ export default function Header() {
             <p
               className={cn(
                 "font-base text-nowrap rounded-full text-center text-base text-primary transition-all hover:scale-[101%] md:text-lg lg:text-xl",
-                // AuthorFont.className,
                 "bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] bg-clip-text text-transparent",
               )}
             >
               Sourav Rakshit
             </p>
           </Link>
-          {/* <Menu> */}
-          <div className="flex items-center justify-center gap-4 rounded-full bg-primary p-2 text-white">
-            <ThemeSwitcher />
-          </div>
-          {/* </Menu> */}
+          <ThemeSwitcher />
         </div>
       </div>
     </header>

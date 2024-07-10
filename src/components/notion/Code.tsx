@@ -3,8 +3,15 @@ import { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoint
 import { RichText } from "./RichText";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as prismThemes from "react-syntax-highlighter/dist/esm/styles/prism";
-import { CopyIcon, PaletteIcon } from "lucide-react";
-import { use, useMemo, useState } from "react";
+import copy from "copy-to-clipboard";
+import {
+  CheckCheckIcon,
+  CheckIcon,
+  ClipboardIcon,
+  CopyIcon,
+  PaletteIcon,
+} from "lucide-react";
+import { use, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
 export default function Code({
@@ -17,6 +24,17 @@ export default function Code({
     [],
   );
   const [theme, setTheme] = useState<number>(10 % themes.length);
+
+  const [copied, setCopied] = useState(false);
+  const ref = useRef<any>(null);
+
+  const copyCode = () => {
+    if (ref.current) clearTimeout(ref.current);
+    copy(content.rich_text.map((item) => item.plain_text).join("\n"));
+    setCopied(true);
+    ref.current = setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="relative overflow-hidden rounded-lg bg-[#282a36] font-mono text-white">
       <div
@@ -26,18 +44,16 @@ export default function Code({
         <span id="Language">{content.language}</span>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setTheme((t) => (t + 1) % themes.length)}
-            className="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 capitalize"
+            onClick={copyCode}
+            className="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 capitalize text-primary-foreground"
+            disabled={copied}
           >
-            Copy
-            <CopyIcon size={16} className="text-white" />
-          </button>
-          <button
-            onClick={() => setTheme((t) => (t + 1) % themes.length)}
-            className="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 capitalize"
-          >
-            {themes[theme]}
-            <PaletteIcon size={16} />
+            {copied ? "Copied" : "Copy"}
+            {copied ? (
+              <CheckCheckIcon size={16} />
+            ) : (
+              <ClipboardIcon size={16} />
+            )}
           </button>
         </div>
       </div>
@@ -54,9 +70,18 @@ export default function Code({
       </SyntaxHighlighter>
       <div
         id="code-footer"
-        className="flex w-full items-center justify-center p-2 text-sm text-white/50 shadow-sm"
+        className="flex w-full items-center justify-between px-6 py-2 text-sm shadow-sm"
       >
-        <RichText items={content.caption} />
+        <p className="text-foreground/50">
+          <RichText items={content.caption} />
+        </p>
+        <button
+          onClick={() => setTheme((t) => (t + 1) % themes.length)}
+          className="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 capitalize text-primary-foreground"
+        >
+          {themes[theme]}
+          <PaletteIcon size={16} />
+        </button>
       </div>
     </div>
   );

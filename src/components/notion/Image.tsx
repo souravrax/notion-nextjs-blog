@@ -10,23 +10,29 @@ export function Image({
 }) {
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      {content.type === "external" ? (
-        <NextImage
-          src={content.external.url}
-          alt={content.caption.map((item) => item.plain_text).join(" ")}
-          unoptimized
-          width={500}
-          height={500}
-        />
-      ) : (
-        <NextImage
-          src={content.file.url}
-          unoptimized
-          alt={content.caption.map((item) => item.plain_text).join(" ")}
-          width={500}
-          height={500}
-        />
-      )}
+      <div className="relative h-80 w-full">
+        {content.type === "external" ? (
+          <NextImage
+            src={content.external.url}
+            alt={content.caption.map((item) => item.plain_text).join(" ")}
+            unoptimized
+            fill
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        ) : (
+          <NextImage
+            src={content.file.url}
+            unoptimized
+            alt={content.caption.map((item) => item.plain_text).join(" ")}
+            fill
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        )}
+      </div>
       <p className="text-foreground">
         <RichText items={content.caption} />
       </p>
