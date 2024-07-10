@@ -82,7 +82,7 @@ async function BlogContent({ blogId }: { blogId: string }) {
   const content: BlockObjectResponse[] = await getBlockData(blogId);
   if (!content) return null;
   return (
-    <div className={cn("space-y-3")}>
+    <div className={cn("space-y-3 font-light")}>
       {content.map((block, index) => (
         <Block block={block} key={index} />
       ))}
