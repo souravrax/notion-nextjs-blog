@@ -10,6 +10,8 @@ import { Image as NotionImage } from "@/components/notion/Image";
 import Callout from "./notion/Callout";
 import Quote from "./notion/Quote";
 import localFont from "next/font/local";
+import { OrderedListItem, UnorderedListItem } from "./notion/ListItem";
+import { Block } from "./Block";
 
 const TelmaFont = localFont({
   src: [
@@ -81,35 +83,27 @@ async function BlogMetadata({ blogId }: { blogId: string }) {
 async function BlogContent({ blogId }: { blogId: string }) {
   const content: BlockObjectResponse[] = await getBlockData(blogId);
   if (!content) return null;
+  let lastBlockType = "none";
+  let blockTrail = 0;
   return (
     <div className={cn("space-y-3 font-light")}>
-      {content.map((block, index) => (
-        <Block block={block} key={index} />
-      ))}
+      {content.map((block, index) => {
+        if (block.type === lastBlockType) {
+          blockTrail++;
+        } else {
+          blockTrail = 0;
+        }
+        lastBlockType = block.type;
+        return (
+          <Block
+            block={block}
+            key={index}
+            index={index}
+            blockTrail={blockTrail}
+            depth={0}
+          />
+        );
+      })}
     </div>
   );
-}
-
-function Block({ block }: { block: BlockObjectResponse }) {
-  switch (block.type) {
-    case "heading_1":
-      return <Heading1 content={block.heading_1} />;
-    case "heading_2":
-      return <Heading2 content={block.heading_2} />;
-    case "heading_3":
-      return <Heading3 content={block.heading_3} />;
-    case "paragraph":
-      return <Paragraph content={block.paragraph} />;
-    case "code":
-      return <Code content={block.code} />;
-    case "image":
-      return <NotionImage content={block.image} />;
-    case "callout":
-      return <Callout content={block.callout} />;
-    case "quote":
-      return <Quote content={block.quote} />;
-    default:
-      return null;
-  }
-  return null;
 }
