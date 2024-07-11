@@ -1,5 +1,8 @@
+export const revalidate = 900;
+
 import { BlogList } from "@/components/BlogList";
-import Header from "@/components/Header";
+import BlogLoading from "@/components/BlogLoadingAnimate";
+import { Suspense } from "react";
 
 export default function page() {
   return (
@@ -15,7 +18,9 @@ function Blogs() {
       id="blogs"
       className="flex h-full flex-col items-start justify-center gap-2 space-y-8"
     >
-      <BlogList />
+      <Suspense fallback={<BlogLoading />}>
+        <BlogList />
+      </Suspense>
     </section>
   );
 }

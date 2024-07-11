@@ -20,4 +20,4 @@ class Throttle {
   }
 }
 
-export const NotionThrottle = new Throttle(400);
+export const NotionThrottle = new Throttle(340);

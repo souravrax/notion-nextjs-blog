@@ -4,13 +4,15 @@ import {
   QueryDatabaseResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { NotionPageMetadata } from "./types";
+import { cache } from "react";
 
 const baseURL = process.env.HOSTNAME!;
-const revalidate = 900;
+const revalidate = 900; // 15 minutes
 
 const authToken = process.env.API_AUTH_TOKEN!;
 
-export async function getBlogs(limit?: number, offset?: number) {
+export const getBlogs = cache(async function (limit?: number, offset?: number) {
+  console.log("getBlogs Called");
   const res = await fetch(`${baseURL}/api/blogs`, {
     headers: {
       Authorization: authToken,
@@ -22,7 +24,7 @@ export async function getBlogs(limit?: number, offset?: number) {
   });
   const data = await res.json();
   return data as QueryDatabaseResponse["results"];
-}
+});
 
 export async function getBlockData(blockId: string) {
   const res = await fetch(`${baseURL}/api/blogs/${blockId}/content`, {

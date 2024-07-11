@@ -3,6 +3,7 @@ import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import Link from "next/link";
 import React from "react";
 import { EquationInline } from "./Equation";
+import { Tooltip } from "../ui/tooltip";
 
 export function RichText(props: { block: Array<RichTextItemResponse> }) {
   return props.block.map((item, i) =>
@@ -55,14 +56,16 @@ function WrapInsideLink({
   className?: string;
 }) {
   return href ? (
-    <Link
-      href={href}
-      className={cn("font-semibold italic text-primary hover:underline")}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      {children}
-    </Link>
+    <Tooltip>
+      <Link
+        href={href}
+        className={cn("font-semibold italic text-primary hover:underline")}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {children}
+      </Link>
+    </Tooltip>
   ) : (
     children
   );

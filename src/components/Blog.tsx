@@ -3,6 +3,7 @@ import { cn, convertTimestampToDate } from "@/lib/utils";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import localFont from "next/font/local";
 import { Block } from "./Block";
+import { Skeleton } from "./ui/skeleton";
 
 const TelmaFont = localFont({
   src: [
@@ -30,7 +31,33 @@ const TelmaFont = localFont({
   display: "swap",
 });
 
-export default function Blog({ blogId }: { blogId: string }) {
+const ContentSkeleton = () =>
+  Array.from({ length: 10 }).map((_, index) => (
+    <Skeleton key={`${index}-content-skeleton-title`} className="h-8 w-full" />
+  ));
+
+const MetadataSkeleton = () => (
+  <div className="flex w-full flex-col items-center justify-center gap-4">
+    <div className="font-xs flex flex-col items-center justify-center text-sm font-semibold text-primary">
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+    <Skeleton className="h-12 w-full" />
+    <ul className="flex flex-wrap gap-2">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <li
+          key={index}
+          className={cn(
+            "rounded-full bg-foreground/60 px-2 py-1 text-sm text-background",
+          )}
+        >
+          <Skeleton className="h-2 w-8" />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+export default async function Blog({ blogId }: { blogId: string }) {
   return (
     <section className="space-y-12">
       <BlogMetadata blogId={blogId} />
