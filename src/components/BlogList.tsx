@@ -24,7 +24,7 @@ export async function BlogList() {
         <h2 className="text-2xl font-extrabold text-primary transition-all hover:scale-[101%] md:text-2xl lg:text-4xl">
           {blog.properties.Title.type === "title" && (
             <RichText
-              items={
+              block={
                 blog.properties.Title.title as unknown as RichTextItemResponse[]
               }
             />
@@ -33,7 +33,7 @@ export async function BlogList() {
         <p>
           {blog.properties.Description.type === "rich_text" && (
             <RichText
-              items={
+              block={
                 blog.properties.Description
                   .rich_text as unknown as RichTextItemResponse[]
               }

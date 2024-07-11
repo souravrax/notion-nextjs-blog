@@ -3,8 +3,10 @@ import { ToggleBlockObjectResponse } from "@notionhq/client/build/src/api-endpoi
 import { RichText } from "../RichText";
 import ToggleHandle from "./ToggleHandle";
 import { Block } from "@/components/Block";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Suspense } from "react";
 
-export async function ToggleList({
+async function ToggleListAsync({
   content,
 }: {
   content: ToggleBlockObjectResponse;
@@ -16,7 +18,7 @@ export async function ToggleList({
   if (!children) return null;
   return (
     <ToggleHandle
-      text={<RichText items={content.toggle.rich_text} />}
+      text={<RichText block={content.toggle.rich_text} />}
       id={id}
       className="space-y-4"
     >
@@ -27,5 +29,17 @@ export async function ToggleList({
         <div className="text-foreground/50">No children</div>
       )}
     </ToggleHandle>
+  );
+}
+
+export function ToggleList({
+  content,
+}: {
+  content: ToggleBlockObjectResponse;
+}) {
+  return (
+    <Suspense fallback={<Skeleton className="h-8 w-full" />}>
+      <ToggleListAsync content={content} />
+    </Suspense>
   );
 }

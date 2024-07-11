@@ -77,7 +77,7 @@ async function BlogContent({ blogId }: { blogId: string }) {
   let lastBlockType = "none";
   let blockTrail = 0;
   return (
-    <div className={cn("space-y-3 font-light")}>
+    <div className={cn("space-y-4 font-light")}>
       {content.map((block, index) => {
         if (block.type === lastBlockType) {
           blockTrail++;

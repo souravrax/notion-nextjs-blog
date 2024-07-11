@@ -34,7 +34,7 @@ export function Image({
         )}
       </div>
       <p className="text-foreground">
-        <RichText items={content.caption} />
+        <RichText block={content.caption} />
       </p>
     </div>
   );

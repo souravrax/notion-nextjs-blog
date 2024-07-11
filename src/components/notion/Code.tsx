@@ -14,7 +14,7 @@ import {
 import { use, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
-export default function Code({
+export function Code({
   content,
 }: {
   content: CodeBlockObjectResponse["code"];
@@ -73,7 +73,7 @@ export default function Code({
         className="flex w-full items-center justify-between px-6 py-2 text-sm shadow-sm"
       >
         <p className="text-foreground/50">
-          <RichText items={content.caption} />
+          <RichText block={content.caption} />
         </p>
         <button
           onClick={() => setTheme((t) => (t + 1) % themes.length)}

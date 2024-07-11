@@ -2,7 +2,7 @@ import { CalloutBlockObjectResponse } from "@notionhq/client/build/src/api-endpo
 import React from "react";
 import { RichText } from "./RichText";
 
-export default function Callout({
+export function Callout({
   content,
 }: {
   content: CalloutBlockObjectResponse["callout"];
@@ -11,7 +11,7 @@ export default function Callout({
     <div className="flex w-full items-start justify-start gap-2 rounded border p-4">
       {content.icon?.type === "emoji" && <div>{content.icon.emoji}</div>}
       <div>
-        <RichText items={content.rich_text} />
+        <RichText block={content.rich_text} />
       </div>
     </div>
   );

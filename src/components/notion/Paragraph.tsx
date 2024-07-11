@@ -9,7 +9,7 @@ export function Paragraph({
 }) {
   return (
     <h1 className="text-lg">
-      <RichText items={content.rich_text} />
+      <RichText block={content.rich_text} />
     </h1>
   );
 }

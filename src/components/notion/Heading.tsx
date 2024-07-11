@@ -11,8 +11,8 @@ export function Heading1({
   content: Heading1BlockObjectResponse["heading_1"];
 }) {
   return (
-    <h1 className="text-3xl font-extrabold">
-      <RichText items={content.rich_text} />
+    <h1 className="py-1.5 text-3xl font-extrabold">
+      <RichText block={content.rich_text} />
     </h1>
   );
 }
@@ -23,8 +23,8 @@ export function Heading2({
   content: Heading2BlockObjectResponse["heading_2"];
 }) {
   return (
-    <h2 className="text-2xl font-bold">
-      <RichText items={content.rich_text} />
+    <h2 className="py-1 text-2xl font-bold">
+      <RichText block={content.rich_text} />
     </h2>
   );
 }
@@ -35,8 +35,8 @@ export function Heading3({
   content: Heading3BlockObjectResponse["heading_3"];
 }) {
   return (
-    <h3 className="text-xl font-bold">
-      <RichText items={content.rich_text} />
+    <h3 className="py-0.5 text-xl font-bold">
+      <RichText block={content.rich_text} />
     </h3>
   );
 }

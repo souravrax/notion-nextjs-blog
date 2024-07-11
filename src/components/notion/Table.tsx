@@ -3,7 +3,7 @@ import {
   getBlock,
   TableBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import React from "react";
+import React, { Suspense } from "react";
 
 import {
   Table,
@@ -15,8 +15,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { RichText } from "./RichText";
+import { Skeleton } from "../ui/skeleton";
 
-export async function NotionTable({
+async function NotionTableAsync({
   content,
 }: {
   content: TableBlockObjectResponse;
@@ -32,7 +33,7 @@ export async function NotionTable({
       {row.type === "table_row" &&
         row.table_row.cells.map((cell, index) => (
           <TableCell key={index}>
-            <RichText items={cell} />
+            <RichText block={cell} />
           </TableCell>
         ))}
     </TableRow>
@@ -47,7 +48,7 @@ export async function NotionTable({
             {tableRows[0].type === "table_row" &&
               tableRows[0].table_row.cells.map((cell, index) => (
                 <TableHead key={index}>
-                  <RichText items={cell} />
+                  <RichText block={cell} />
                 </TableHead>
               ))}
           </TableRow>
@@ -55,5 +56,17 @@ export async function NotionTable({
       )}
       <TableBody>{body}</TableBody>
     </Table>
+  );
+}
+
+export function NotionTable({
+  content,
+}: {
+  content: TableBlockObjectResponse;
+}) {
+  return (
+    <Suspense fallback={<Skeleton className="h-20 w-full" />}>
+      <NotionTableAsync content={content} />
+    </Suspense>
   );
 }
