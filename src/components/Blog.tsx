@@ -4,32 +4,7 @@ import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import localFont from "next/font/local";
 import { Block } from "./Block";
 import { Skeleton } from "./ui/skeleton";
-
-const TelmaFont = localFont({
-  src: [
-    {
-      path: "../../public/fonts/Telma/Telma-Light.woff2",
-      weight: "300",
-    },
-    {
-      path: "../../public/fonts/Telma/Telma-Regular.woff2",
-      weight: "400",
-    },
-    {
-      path: "../../public/fonts/Telma/Telma-Medium.woff2",
-      weight: "500",
-    },
-    {
-      path: "../../public/fonts/Telma/Telma-Bold.woff2",
-      weight: "700",
-    },
-    {
-      path: "../../public/fonts/Telma/Telma-Black.woff2",
-      weight: "900",
-    },
-  ],
-  display: "swap",
-});
+import { TelmaFont } from "./Fonts";
 
 const ContentSkeleton = () =>
   Array.from({ length: 10 }).map((_, index) => (

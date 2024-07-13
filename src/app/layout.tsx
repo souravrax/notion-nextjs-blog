@@ -12,12 +12,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NextTopLoader from "nextjs-toploader";
-
-const MerriweatherFont = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700", "900", "300"],
-  display: "swap",
-});
+import { MerriweatherFont } from "@/components/Fonts";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 

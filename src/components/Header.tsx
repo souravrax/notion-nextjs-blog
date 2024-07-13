@@ -3,40 +3,10 @@ import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 
 import { cn } from "@/lib/utils";
+import { HagmolyaFont } from "./Fonts";
 
 const ThemeSwitcher = dynamic(() => import("@/components/theme-switcher"), {
   ssr: false,
-});
-
-const HagmolyaFont = localFont({
-  src: "../../public/fonts/Hagmolya.woff2",
-  display: "swap",
-});
-
-const AuthorFont = localFont({
-  src: [
-    {
-      path: "../../public/fonts/Author/Author-Light.woff2",
-      weight: "300",
-    },
-    {
-      path: "../../public/fonts/Author/Author-Regular.woff2",
-      weight: "400",
-    },
-    {
-      path: "../../public/fonts/Author/Author-Medium.woff2",
-      weight: "500",
-    },
-    {
-      path: "../../public/fonts/Author/Author-Semibold.woff2",
-      weight: "600",
-    },
-    {
-      path: "../../public/fonts/Author/Author-Bold.woff2",
-      weight: "700",
-    },
-  ],
-  display: "swap",
 });
 
 export default function Header() {
