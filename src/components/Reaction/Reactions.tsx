@@ -69,8 +69,7 @@ function ReactionForm({
 }) {
   const addReactionHandler = async () => {
     "use server";
-    const newCount = await addReaction(blogId, emoji, count);
-    console.log(newCount);
+    await addReaction(blogId, emoji, count);
   };
   return (
     <form key={`reactions-${id}-${blogId}`} action={addReactionHandler}>
