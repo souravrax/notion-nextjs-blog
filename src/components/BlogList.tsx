@@ -22,8 +22,8 @@ export async function BlogList() {
   if (!isArray(blogs)) return null;
   return (
     <>
-      <p className="text-xs text-foreground/30">{blogs.length} blogs found</p>
-      <section className="grid gap-4 md:grid-cols-2">
+      {/* <p className="text-xs text-foreground/30">{blogs.length} blogs found</p> */}
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog, index) => (
           <Link
             href={`/blog/${blog.id}`}
@@ -49,7 +49,7 @@ export async function BlogList() {
             ) : null}
             <div
               key={index}
-              className="relative flex w-full flex-col gap-2 rounded-lg bg-background/30 p-2 backdrop-blur-xl"
+              className="relative flex w-full flex-col gap-2 rounded-lg border border-white/20 bg-black/10 p-2 backdrop-blur-xl"
             >
               <h2 className="text-lg font-extrabold text-primary transition-all md:text-xl lg:text-2xl">
                 {blog.properties.Title.type === "title" && (
@@ -61,7 +61,7 @@ export async function BlogList() {
                   />
                 )}
               </h2>
-              <p className="text-xs">
+              <p className="text-xs text-white">
                 {blog.properties.Description.type === "rich_text" && (
                   <RichText
                     block={
@@ -81,13 +81,13 @@ export async function BlogList() {
                     ).map((tag) => (
                       <span
                         key={`${tag.id}${tag.name}`}
-                        className="rounded-full bg-foreground/50 px-2 py-0.5 text-xs text-background"
+                        className="rounded-full bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
                       >
-                        #{tag.name}
+                        {tag.name}
                       </span>
                     ))}
                 </div>
-                <p className="text-sm">
+                <p className="text-sm text-white">
                   {convertTimestampToDate(blog.last_edited_time)}
                 </p>
               </div>

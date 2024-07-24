@@ -11,7 +11,7 @@ export default function page({
 }>) {
   if (!blogId) return null;
   return (
-    <main className="mx-auto max-w-screen-lg space-y-12 px-4 py-4 md:px-16 md:py-8 lg:px-32">
+    <main className="mx-auto max-w-screen-2xl space-y-12 px-4 py-4 md:px-16 md:py-8 lg:px-32">
       <Suspense fallback={<BlogLoading />}>
         <Blog blogId={blogId} />
       </Suspense>

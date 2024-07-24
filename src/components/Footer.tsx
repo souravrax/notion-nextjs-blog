@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        "mx-auto max-w-screen-lg space-y-4 px-4 py-32 md:px-16 lg:px-32",
+        "mx-auto max-w-screen-2xl space-y-4 px-4 py-32 md:px-16 lg:px-32",
       )}
     >
       <div className="flex w-full items-center justify-center gap-4 text-foreground/70">

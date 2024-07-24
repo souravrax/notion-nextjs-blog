@@ -11,7 +11,7 @@ const ThemeSwitcher = dynamic(() => import("@/components/theme-switcher"), {
 
 export default function Header() {
   return (
-    <header className="mx-auto max-w-screen-lg px-4 py-4 md:px-16 md:py-8 lg:px-32">
+    <header className="mx-auto max-w-screen-2xl px-4 py-4 md:px-16 md:py-8 lg:px-32">
       <div className="flex w-full items-center justify-between gap-4 rounded-full bg-background/30 backdrop-blur-xl">
         <Link href="/">
           <h1

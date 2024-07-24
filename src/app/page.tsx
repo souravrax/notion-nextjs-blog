@@ -9,7 +9,7 @@ import { Suspense } from "react";
 
 export default function page() {
   return (
-    <main className="mx-auto max-w-screen-lg space-y-4 px-4 py-4 md:px-16 md:py-8 lg:px-32">
+    <main className="mx-auto max-w-screen-2xl space-y-4 px-4 py-4 md:px-16 md:py-8 lg:px-32">
       <h1
         className={cn(
           "text-3xl font-light tracking-tight",
