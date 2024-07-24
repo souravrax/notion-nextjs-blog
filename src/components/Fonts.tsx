@@ -1,4 +1,4 @@
-import { Merriweather } from "next/font/google";
+import { Merriweather, Montserrat, Open_Sans, Poppins } from "next/font/google";
 import localFont from "next/font/local";
 
 export const MerriweatherFont = Merriweather({
@@ -30,6 +30,18 @@ export const TelmaFont = localFont({
       weight: "900",
     },
   ],
+  display: "swap",
+});
+
+export const OpenSansFont = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700", "300", "500", "600", "800"],
+  display: "swap",
+});
+
+export const PoppinsFont = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 

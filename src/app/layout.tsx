@@ -7,12 +7,11 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 import SmoothScroll from "@/lib/SmoothScroll";
-import { Merriweather } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NextTopLoader from "nextjs-toploader";
-import { MerriweatherFont } from "@/components/Fonts";
+import { PoppinsFont } from "@/components/Fonts";
 
 const gaId = process.env.GOOGLE_ANALYTICS_ID as string;
 
@@ -32,7 +31,8 @@ export default function RootLayout({
       <VercelAnalytics />
       <VercelSpeedInsights />
       <SmoothScroll>
-        <body className={cn(MerriweatherFont.className)}>
+        {/* <body className={cn(MerriweatherFont.className)}> */}
+        <body className={cn(PoppinsFont.className)}>
           <NextTopLoader />
           <ThemeProvider>
             <TooltipProvider>
