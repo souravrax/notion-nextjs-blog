@@ -27,7 +27,7 @@ export async function BlogList() {
       <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog, index) => (
           <Link
-            href={`/blog/${getBlogPath(blog.url)}`}
+            href={`/${getBlogPath(blog.url)}`}
             key={blog.id}
             className="relative flex h-[400px] w-full items-end overflow-hidden rounded-lg border p-4"
           >

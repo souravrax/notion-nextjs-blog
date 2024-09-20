@@ -13,13 +13,13 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const blogs = (await getBlogs()) as DatabaseObjectResponse[];
-  return blogs.map((blog) => ({ blogId: getBlogPath(blog.url) }));
+  return blogs.map((blog) => ({ blogPath: getBlogPath(blog.url) }));
 }
 
 export default function page({
-  params: { blogId: blogPath },
+  params: { blogPath },
 }: Readonly<{
-  params: { blogId: string };
+  params: { blogPath: string };
 }>) {
   const blogId = blogPath.split("-").pop();
   if (!blogId || blogId.length !== 32) return redirect("/");
