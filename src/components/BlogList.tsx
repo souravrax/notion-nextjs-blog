@@ -7,7 +7,6 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 import { RichText } from "./notion/RichText";
 import isArray from "lodash/isArray";
-import Image from "next/image";
 import MotionImage from "./MotionImage";
 import { getBlogPath } from "@/lib/helpers/transformer";
 
@@ -37,7 +36,8 @@ export async function BlogList() {
                 fill
                 className="object-cover"
                 whileHover={{
-                  scale: 1.05,
+                  scale: 1.2,
+                  rotate: 10,
                 }}
                 //@ts-ignore
                 alt={blog.properties.Title.title
